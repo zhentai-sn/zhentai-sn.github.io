@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const posts = await getCollection('blog');
+const counts = new Map<string, number>();
+posts.forEach((p) => (p.data.tags ?? []).forEach((t) => counts.set(t, (counts.get(t) ?? 0) + 1)));
+// Sort by frequency, then name.
+const tags = Array.from(counts.entries()).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+---
+
+<!doctype html>
+<html lang="zh">
+	<head>
+		<BaseHead title={`标签 · ${SITE_TITLE}`} description="按标签浏览全部文章" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="page-title"><span class="px-dot"></span>标签</h1>
+			<p class="count">共 {tags.length} 个标签</p>
+
+			<ul class="cloud">
+				{
+					tags.map(([tag, n]) => (
+						<li>
+							<a class="tag px-sm" href={`/tags/${encodeURIComponent(tag)}/`}>
+								# {tag} <span class="n">{n}</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+
+		<style>
+			.page-title { display: flex; align-items: center; gap: 12px; font-size: 2.2rem; }
+			.count { font-family: var(--font-silk); font-size: 0.7rem; color: var(--dim); margin: 0 0 2.4em; }
+			.cloud { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; margin: 0; padding: 0; }
+			.tag {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				font-family: var(--font-pixel);
+				font-size: 1.05rem;
+				text-decoration: none;
+				background: var(--card);
+				color: var(--ink);
+				padding: 6px 14px;
+				transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+			}
+			.tag:hover { background: var(--acc); color: #fff; transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--shadow); }
+			.n {
+				font-family: var(--font-silk);
+				font-size: 0.6rem;
+				background: var(--bg);
+				border: 2px solid var(--shadow);
+				padding: 1px 6px;
+			}
+			.tag:hover .n { color: var(--ink); }
+		</style>
+	</body>
+</html>

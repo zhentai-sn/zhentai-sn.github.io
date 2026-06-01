@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import Search from './Search.astro';
 ---
 
 <header>
@@ -12,11 +13,18 @@ import HeaderLink from './HeaderLink.astro';
 		<div class="internal-links">
 			<HeaderLink href="/">home</HeaderLink>
 			<HeaderLink href="/blog">posts</HeaderLink>
+			<HeaderLink href="/tags">tags</HeaderLink>
 			<HeaderLink href="/about">about</HeaderLink>
 		</div>
-		<button id="theme-toggle" class="px-sm" aria-label="切换深浅色">
-			<span class="theme-icon">◐</span>
-		</button>
+		<div class="controls">
+			<Search />
+			<button id="lang-toggle" class="px-sm" aria-label="切换语言 / switch language">
+				<span class="lang-zh">中</span><span class="lang-en">EN</span>
+			</button>
+			<button id="theme-toggle" class="px-sm" aria-label="切换深浅色">
+				<span class="theme-icon">◐</span>
+			</button>
+		</div>
 	</nav>
 </header>
 
@@ -37,6 +45,7 @@ import HeaderLink from './HeaderLink.astro';
 		align-items: center;
 		justify-content: space-between;
 		gap: 12px;
+		flex-wrap: wrap;
 	}
 	.logo {
 		display: flex;
@@ -56,48 +65,57 @@ import HeaderLink from './HeaderLink.astro';
 		background-color: var(--acc);
 		border: 3px solid var(--shadow);
 		image-rendering: pixelated;
-		/* two pixel eyes */
 		background-image:
 			radial-gradient(circle at 33% 40%, var(--shadow) 16%, transparent 17%),
 			radial-gradient(circle at 67% 40%, var(--shadow) 16%, transparent 17%);
 		flex-shrink: 0;
 	}
-	.internal-links {
-		display: flex;
-		gap: 8px;
-		flex-wrap: wrap;
-	}
-	#theme-toggle {
+	.internal-links { display: flex; gap: 8px; flex-wrap: wrap; }
+	.controls { display: flex; gap: 8px; align-items: center; }
+
+	#theme-toggle,
+	#lang-toggle {
 		font-family: var(--font-pixel);
-		font-size: 1.1rem;
+		font-size: 1.05rem;
 		background: var(--card);
 		color: var(--ink);
 		cursor: pointer;
 		padding: 4px 10px;
 		line-height: 1;
-		transition: transform 0.1s, box-shadow 0.1s;
+		transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
 	}
-	#theme-toggle:hover {
+	#theme-toggle:hover,
+	#lang-toggle:hover {
 		transform: translate(1px, 1px);
 		box-shadow: 1px 1px 0 var(--shadow);
 		background: var(--acc);
 		color: #fff;
 	}
-	@media (max-width: 520px) {
+
+	@media (max-width: 600px) {
 		.logo b { font-size: 1rem; }
-		.internal-links { gap: 4px; }
+		.internal-links { gap: 4px; font-size: 0.9rem; }
+		nav { gap: 8px; }
 	}
 </style>
 
 <script is:inline>
-	// Theme is initialised in <head> (BaseHead) to avoid a flash.
+	// Theme + language toggles. Initial values are set in <head> (BaseHead) to avoid flashes.
 	document.addEventListener('click', (e) => {
-		const btn = e.target.closest('#theme-toggle');
-		if (!btn) return;
-		const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-		document.documentElement.dataset.theme = next;
-		localStorage.setItem('theme', next);
-		// Keep the giscus comment widget's theme in sync, if present.
-		if (window.__setGiscusTheme) window.__setGiscusTheme();
+		const themeBtn = e.target.closest('#theme-toggle');
+		if (themeBtn) {
+			const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+			document.documentElement.dataset.theme = next;
+			localStorage.setItem('theme', next);
+			if (window.__setGiscusTheme) window.__setGiscusTheme();
+			return;
+		}
+		const langBtn = e.target.closest('#lang-toggle');
+		if (langBtn) {
+			const next = document.documentElement.dataset.lang === 'en' ? 'zh' : 'en';
+			document.documentElement.dataset.lang = next;
+			localStorage.setItem('lang', next);
+			if (window.__setGiscusLang) window.__setGiscusLang();
+		}
 	});
 </script>

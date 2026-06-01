@@ -40,6 +40,10 @@
 
 html { scroll-behavior: smooth; }
 
+/* ---- language switch: show only the active language's content ---- */
+html[data-lang='zh'] .lang-en { display: none !important; }
+html[data-lang='en'] .lang-zh { display: none !important; }
+
 body {
 	font-family: var(--font-body);
 	margin: 0;

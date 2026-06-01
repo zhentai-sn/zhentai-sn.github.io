@@ -47,6 +47,18 @@
 		});
 		// Let the header theme toggle update giscus too.
 		window.__setGiscusTheme = () => pushTheme(currentTheme());
+
+		// Language switch → update giscus UI language.
+		window.__setGiscusLang = () => {
+			const lang = document.documentElement.dataset.lang === 'en' ? 'en' : 'zh-CN';
+			const f = document.querySelector('iframe.giscus-frame');
+			if (f && f.contentWindow) {
+				f.contentWindow.postMessage(
+					{ giscus: { setConfig: { lang } } },
+					'https://giscus.app',
+				);
+			}
+		};
 	})();
 </script>
 

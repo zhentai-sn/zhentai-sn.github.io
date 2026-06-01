@@ -1,0 +1,95 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import TagList from '../../components/TagList.astro';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	const tagSet = new Set<string>();
+	posts.forEach((p) => (p.data.tags ?? []).forEach((t) => tagSet.add(t)));
+	return Array.from(tagSet).map((tag) => ({
+		params: { tag },
+		props: {
+			tag,
+			posts: posts
+				.filter((p) => (p.data.tags ?? []).includes(tag))
+				.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+		},
+	}));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh">
+	<head>
+		<BaseHead title={`标签：${tag} · ${SITE_TITLE}`} description={`所有标记为「${tag}」的文章`} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<a class="back" href="/tags">← 所有标签</a>
+			<h1 class="page-title"><span class="px-dot"></span># {tag}</h1>
+			<p class="count">{posts.length} 篇文章</p>
+
+			<ul class="grid">
+				{
+					posts.map((post) => (
+						<li>
+							<a class="card px-sm" href={`/blog/${post.id}/`}>
+								<span class="date">
+									<FormattedDate date={post.data.pubDate} />
+								</span>
+								<h3>{post.data.title}</h3>
+								<p>{post.data.description}</p>
+							</a>
+							<TagList tags={post.data.tags} size="sm" />
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+
+		<style>
+			.back {
+				font-family: var(--font-pixel);
+				font-size: 0.95rem;
+				color: var(--acc-d);
+				display: inline-block;
+				margin-bottom: 1.2em;
+			}
+			.back:hover { color: var(--pink); }
+			.page-title { display: flex; align-items: center; gap: 12px; font-size: 2.2rem; }
+			.count { font-family: var(--font-silk); font-size: 0.7rem; color: var(--dim); margin: 0 0 2em; }
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+				gap: 22px;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.grid > li { display: flex; flex-direction: column; gap: 10px; }
+			.card {
+				display: flex;
+				flex-direction: column;
+				background: var(--card);
+				padding: 1.3em 1.4em;
+				text-decoration: none;
+				color: inherit;
+				transition: transform 0.1s, box-shadow 0.1s;
+			}
+			.card:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--shadow); }
+			.card .date { font-family: var(--font-silk); font-size: 0.6rem; color: var(--acc-d); letter-spacing: 1px; }
+			.card h3 { font-size: 1.25rem; font-weight: 500; margin: 0.5em 0 0.4em; }
+			.card:hover h3 { color: var(--pink); }
+			.card p { font-size: 0.9rem; color: var(--dim); margin: 0; }
+		</style>
+	</body>
+</html>

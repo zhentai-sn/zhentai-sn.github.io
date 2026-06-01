@@ -3,33 +3,65 @@ import Layout from '../layouts/BlogPost.astro';
 ---
 
 <Layout
-	title="关于我"
-	description="真太 · 医学影像深度学习研究者"
+	title="关于 · About"
+	description="真太 · 医学影像深度学习研究者 / Zhentai — Medical imaging deep learning researcher"
 	pubDate={new Date('January 01 2025')}
 >
-	<p>
-		你好，我是<strong>真太</strong>。我的工作集中在<strong>医学影像的深度学习</strong>——
-		尤其是肾脏病理与电镜（TEM）超微结构的自动化分析，希望让模型真正成为临床诊断里好用的工具，
-		而不只是论文里的一个数字。
-	</p>
+	{/* ---------- 中文 ---------- */}
+	<div class="lang-zh">
+		<p>
+			你好，我是<strong>真太</strong>。我的工作集中在<strong>医学影像的深度学习</strong>——
+			尤其是肾脏病理与电镜（TEM）超微结构的自动化分析，希望让模型真正成为临床诊断里好用的工具，
+			而不只是论文里的一个数字。
+		</p>
 
-	<h2>我在做什么</h2>
-	<ul>
-		<li>肾小球超微结构的表征学习与分割</li>
-		<li>把自监督 / 弱监督方法落到真实的病理数据上</li>
-		<li>写一些能直接 fork 的现代化科研工程模板</li>
-	</ul>
+		<h2>我在做什么</h2>
+		<ul>
+			<li>肾小球超微结构的表征学习与分割</li>
+			<li>把自监督 / 弱监督方法落到真实的病理数据上</li>
+			<li>写一些能直接 fork 的现代化科研工程模板</li>
+		</ul>
 
-	<h2>这个博客写什么</h2>
-	<p>
-		主要三类：<strong>研究笔记</strong>（踩过的坑、对照实验）、
-		<strong>开源项目</strong>（做了什么、为什么这么做），以及
-		<strong>工具与心法</strong>（让科研和工程更顺手的小东西）。更新随缘，但都尽量写得有用。
-	</p>
+		<h2>这个博客写什么</h2>
+		<p>
+			主要三类：<strong>研究笔记</strong>、<strong>开源项目</strong>，以及
+			<strong>工具与心法</strong>。更新随缘，但都尽量写得有用。
+		</p>
 
-	<h2>找到我</h2>
-	<p>
-		代码大多在 <a href="https://github.com/zhentai-sn" target="_blank" rel="noopener">GitHub</a> 上，
-		也欢迎邮件交流：<a href="mailto:zhentai.sn@gmail.com">zhentai.sn@gmail.com</a>。
-	</p>
+		<h2>找到我</h2>
+		<p>
+			代码大多在 <a href="https://github.com/zhentai-sn" target="_blank" rel="noopener">GitHub</a> 上，
+			也欢迎邮件交流：<a href="mailto:zhentai.sn@gmail.com">zhentai.sn@gmail.com</a>。
+		</p>
+	</div>
+
+	{/* ---------- English ---------- */}
+	<div class="lang-en">
+		<p>
+			Hi, I'm <strong>Zhentai</strong>. I work on <strong>deep learning for medical imaging</strong> —
+			specifically the automated analysis of renal pathology and ultrastructure in transmission
+			electron microscopy (TEM). My goal is to make models genuinely useful for clinical diagnosis,
+			not just a number in a paper.
+		</p>
+
+		<h2>What I work on</h2>
+		<ul>
+			<li>Representation learning &amp; segmentation of glomerular ultrastructure</li>
+			<li>Bringing self-/weakly-supervised methods to real pathology data</li>
+			<li>Writing modern, fork-ready research engineering templates</li>
+		</ul>
+
+		<h2>What this blog is about</h2>
+		<p>
+			Three kinds of things: <strong>research notes</strong>, <strong>open-source projects</strong>,
+			and <strong>tools &amp; principles</strong>. Updated whenever — but always meant to be useful.
+		</p>
+
+		<h2>Find me</h2>
+		<p>
+			Most of my code lives on
+			<a href="https://github.com/zhentai-sn" target="_blank" rel="noopener">GitHub</a>, and you can
+			reach me at <a href="mailto:zhentai.sn@gmail.com">zhentai.sn@gmail.com</a>.
+		</p>
+	</div>
 </Layout>

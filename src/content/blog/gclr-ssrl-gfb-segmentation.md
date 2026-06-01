@@ -2,6 +2,7 @@
 title: 'GCLR：用自监督学习分割肾小球滤过屏障（TEM）'
 description: '一种为 GFB 超微结构分割量身设计的混合像素级 pretext task，整合全局聚类与局部修复，仅用极少标注就达到 SOTA。发表于 Artificial Intelligence in Medicine (2023)。'
 pubDate: 'Dec 01 2023'
+tags: ['论文', '深度学习', '自监督学习', '图像分割', '肾病理', 'TEM']
 ---
 
 > **论文** · *GCLR: A self-supervised representation learning pretext task for glomerular filtration barrier segmentation in TEM images*

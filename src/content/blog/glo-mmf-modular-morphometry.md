@@ -2,6 +2,7 @@
 title: 'Glo-MMF：模块化多模型框架，自动定量肾小球超微结构'
 description: '用分割、分类、检测三个专用模型 + 四个后处理模块，联合定量 GBM 厚度、足突融合程度与电子致密物位置。发表于 Computer Methods and Programs in Biomedicine (2026)。'
 pubDate: 'Aug 15 2026'
+tags: ['论文', '深度学习', '形态定量', '肾病理', 'TEM', '多模型框架']
 ---
 
 > **论文** · *Glo-MMF: A modular multi-model framework for automated morphometry of glomerular ultrastructural features*
