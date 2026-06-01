@@ -48,10 +48,13 @@
 		position: fixed;
 		inset: 0;
 		z-index: 100;
-		display: flex;
+		display: none; /* hidden by default; shown when the [hidden] attr is removed */
 		align-items: flex-start;
 		justify-content: center;
 		padding: 12vh 16px 16px;
+	}
+	.search-modal:not([hidden]) {
+		display: flex;
 	}
 	.search-backdrop {
 		position: absolute;
