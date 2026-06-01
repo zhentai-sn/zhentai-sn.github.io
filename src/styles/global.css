@@ -1,0 +1,169 @@
+/*
+  ZHENTAI.DEV — "GameBoy Pop" theme
+  Minimalist layout + pixel accents + modern type.
+  Light/dark aware via [data-theme].
+*/
+
+:root {
+	/* GameBoy-ish light palette */
+	--bg: #e8f0d8;          /* pale screen */
+	--grid: rgba(106, 168, 79, 0.07);
+	--ink: #1b2a1b;         /* near-black green */
+	--dim: #5d6b4f;
+	--card: #f6fae8;
+	--acc: #6aa84f;         /* gb green */
+	--acc-d: #3d6b2e;
+	--pink: #e85d8a;        /* pop accent */
+	--shadow: #1b2a1b;      /* hard pixel shadow */
+	--code-bg: #dfe8cb;
+	--border: 3px;
+
+	--font-pixel: 'Pixelify Sans', monospace;
+	--font-silk: 'Silkscreen', monospace;
+	--font-body: 'Inter', sans-serif;
+}
+
+[data-theme='dark'] {
+	--bg: #14180f;
+	--grid: rgba(126, 231, 135, 0.06);
+	--ink: #e6efd6;
+	--dim: #8a9a78;
+	--card: #1e2417;
+	--acc: #7ee787;
+	--acc-d: #9dd97f;
+	--pink: #ff7aa8;
+	--shadow: #060a04;
+	--code-bg: #20271a;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+	font-family: var(--font-body);
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	background-color: var(--bg);
+	background-image:
+		linear-gradient(var(--grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+	background-size: 16px 16px;   /* the pixel grid */
+	color: var(--ink);
+	font-size: 18px;
+	line-height: 1.7;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+main {
+	width: 880px;
+	max-width: calc(100% - 2em);
+	margin: auto;
+	padding: 2.5em 1em 4em;
+}
+
+/* ---- headings ---- */
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-pixel);
+	font-weight: 700;
+	margin: 0 0 0.5rem 0;
+	color: var(--ink);
+	line-height: 1.1;
+}
+h1 { font-size: 2.6rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.55rem; }
+h4 { font-size: 1.3rem; }
+
+strong, b { font-weight: 700; }
+
+a { color: var(--acc-d); text-decoration: none; }
+a:hover { color: var(--pink); }
+
+p { margin-bottom: 1em; }
+.prose p { margin-bottom: 1.6em; }
+
+/* ---- pixel hard-shadow box helper ---- */
+.px {
+	border: var(--border) solid var(--shadow);
+	box-shadow: 5px 5px 0 var(--shadow);
+}
+.px-sm {
+	border: var(--border) solid var(--shadow);
+	box-shadow: 3px 3px 0 var(--shadow);
+}
+
+/* tiny pixel accent square */
+.px-dot {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background: var(--pink);
+	image-rendering: pixelated;
+	vertical-align: middle;
+}
+
+/* ---- code & quotes ---- */
+code {
+	font-family: var(--font-silk), monospace;
+	font-size: 0.8em;
+	padding: 2px 6px;
+	background-color: var(--code-bg);
+	border: 2px solid var(--shadow);
+}
+pre {
+	padding: 1.25em;
+	background: var(--card);
+	border: var(--border) solid var(--shadow);
+	box-shadow: 5px 5px 0 var(--shadow);
+	overflow-x: auto;
+}
+pre > code {
+	all: unset;
+	font-family: 'Space Mono', monospace;
+}
+blockquote {
+	border-left: 6px solid var(--acc);
+	background: var(--card);
+	padding: 0.6em 1.2em;
+	margin: 0 0 1.4em;
+	font-size: 1.1em;
+}
+hr { border: none; border-top: 3px dashed var(--acc); margin: 2em 0; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 2px solid var(--shadow); padding: 6px 10px; }
+
+img {
+	max-width: 100%;
+	height: auto;
+	border: var(--border) solid var(--shadow);
+	image-rendering: auto;
+}
+
+textarea, input { width: 100%; font-size: 16px; font-family: var(--font-body); }
+
+@media (max-width: 720px) {
+	body { font-size: 16px; }
+	main { padding: 1.5em 1em 3em; }
+	h1 { font-size: 2rem; }
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
