@@ -5,7 +5,10 @@ const today = new Date();
 
 <footer>
 	<div class="inner">
-		<span>made with <span class="heart">&hearts;</span> &amp; pixels &middot; &copy; {today.getFullYear()} 真太</span>
+		<span>
+			made with <span class="heart">&hearts;</span> &amp; pixels &middot; &copy; {today.getFullYear()} 真太
+			<span class="site-pv" id="busuanzi_container_site_pv">&middot; 访问 <span id="busuanzi_value_site_pv">…</span> 次</span>
+		</span>
 		<div class="links">
 			<a href={GITHUB_URL} target="_blank" rel="noopener">github</a>
 			<a href={`mailto:${EMAIL}`}>email</a>

@@ -97,5 +97,7 @@ import HeaderLink from './HeaderLink.astro';
 		const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
 		document.documentElement.dataset.theme = next;
 		localStorage.setItem('theme', next);
+		// Keep the giscus comment widget's theme in sync, if present.
+		if (window.__setGiscusTheme) window.__setGiscusTheme();
 	});
 </script>
