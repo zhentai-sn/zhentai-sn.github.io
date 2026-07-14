@@ -35,5 +35,14 @@ export default defineConfig({
 			fallbacks: ['sans-serif'],
 			weights: [400, 500, 600, 700],
 		},
+		{
+			// Refined serif — used only on the résumé page for an academic CV look.
+			provider: fontProviders.google(),
+			name: 'Source Serif 4',
+			cssVariable: '--font-serif',
+			fallbacks: ['Georgia', 'serif'],
+			weights: [400, 600, 700],
+			styles: ['normal', 'italic'],
+		},
 	],
 });

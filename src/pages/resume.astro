@@ -1,0 +1,408 @@
+---
+import { Font } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { GITHUB_URL, EMAIL } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh">
+	<head>
+		<BaseHead
+			title="简历 · Résumé"
+			description="真太 · 医学影像深度学习研究者的学术简历 / Zhentai — Curriculum Vitae, medical imaging deep learning researcher"
+		/>
+		<Font cssVariable="--font-serif" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			{/* ---- toolbar (site UI, hidden when printing) ---- */}
+			<div class="toolbar no-print">
+				<span class="crumb">
+					<span class="lang-zh">简历</span><span class="lang-en">Résumé</span>
+				</span>
+				<button id="print-resume" class="dl" type="button">
+					<span class="lang-zh">⬇ 下载 / 打印 PDF</span><span class="lang-en">⬇ Download / Print PDF</span>
+				</button>
+			</div>
+
+			<article class="cv">
+				{/* ===================== Header ===================== */}
+				<header class="cv-head">
+					<h1 class="name">ZHENTAI</h1>
+					<p class="contact">
+						<a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+						<span class="sep">·</span>
+						<span>(+86) 123-4567-8910</span>
+						<span class="sep">·</span>
+						<a href={GITHUB_URL} target="_blank" rel="noopener">github.com/zhentai-sn</a>
+					</p>
+				</header>
+
+				{/* ===================== Summary ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">个人总结</span><span class="lang-en">Summary</span>
+					</h2>
+					<p class="lead lang-zh">
+						长期从事医学影像深度学习研究，专注于肾脏病理与透射电镜（TEM）超微结构的自动化分析。
+						对自监督 / 弱监督表征学习、超微结构分割，以及可落地于临床诊断的模型工程有浓厚兴趣，
+						认同开放、连接、共享的科研理念。
+					</p>
+					<p class="lead lang-en">
+						Researcher in deep learning for medical imaging, focused on the automated analysis of
+						renal pathology and ultrastructure in transmission electron microscopy (TEM). Deeply
+						interested in self-/weakly-supervised representation learning, ultrastructural
+						segmentation, and deployable model engineering for clinical diagnosis.
+					</p>
+				</section>
+
+				{/* ===================== Education ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">教育背景</span><span class="lang-en">Education</span>
+					</h2>
+
+					<div class="item">
+						<div class="row">
+							<div class="row-main">
+								<strong>某某大学 (University)</strong>,
+								<span class="lang-zh">计算机科学与技术, 博士研究生</span>
+								<span class="lang-en">Computer Science, Ph.D. Candidate</span>
+							</div>
+							<div class="row-date">2022.9 - <span class="lang-zh">至今</span><span class="lang-en">Present</span></div>
+						</div>
+						<p class="row-sub">
+							<span class="lang-zh">研究方向：医学影像深度学习 · 导师：某某教授 · 预计 2026 年 6 月毕业</span>
+							<span class="lang-en">Focus: deep learning for medical imaging · Advisor: Prof. Name · Expected June 2026</span>
+						</p>
+					</div>
+
+					<div class="item">
+						<div class="row">
+							<div class="row-main">
+								<strong>某某大学 (University)</strong>,
+								<span class="lang-zh">生物医学工程, 工学学士</span>
+								<span class="lang-en">Biomedical Engineering, B.Eng.</span>
+							</div>
+							<div class="row-date">2018.9 - 2022.6</div>
+						</div>
+						<p class="row-sub">
+							<span class="lang-zh">排名 1/100 (前 1%), 国家奖学金, 优秀毕业生, GPA 3.8/4.0</span>
+							<span class="lang-en">Rank 1/100 (top 1%), National Scholarship, Distinguished Graduate, GPA 3.8/4.0</span>
+						</p>
+					</div>
+				</section>
+
+				{/* ===================== Skills ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">技术能力</span><span class="lang-en">Technical Skills</span>
+					</h2>
+					<ul class="skills">
+						<li>
+							<span class="lang-zh">编程语言：</span><span class="lang-en">Languages: </span>
+							Python, PyTorch, C++, TypeScript, Bash
+						</li>
+						<li>
+							<span class="lang-zh">关键词：</span><span class="lang-en">Keywords: </span>
+							Segmentation / Self-supervised / Weakly-supervised / MONAI / Docker / MLOps
+						</li>
+					</ul>
+				</section>
+
+				{/* ===================== Research ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">研究课题</span><span class="lang-en">Research</span>
+					</h2>
+
+					<div class="item">
+						<div class="row">
+							<div class="row-main">
+								<strong>
+									<span class="lang-zh">肾小球超微结构的弱监督分割</span>
+									<span class="lang-en">Weakly-Supervised Segmentation of Glomerular Ultrastructure</span>
+								</strong>,
+								<span class="lang-zh">项目负责人</span><span class="lang-en">Lead</span>
+							</div>
+							<div class="row-date">2023.9 - <span class="lang-zh">至今</span><span class="lang-en">Present</span></div>
+						</div>
+						<ul class="bullets">
+							<li>
+								<span class="lang-zh">提出面向 TEM 图像的弱监督分割框架，在有限标注下达到临床可用精度。</span>
+								<span class="lang-en">Proposed a weakly-supervised segmentation framework for TEM images, reaching clinically usable accuracy under limited annotation.</span>
+							</li>
+							<li>
+								<span class="lang-zh">构建可复现的科研工程模板，缩短实验迭代周期约 40%，相关成果已投稿。</span>
+								<span class="lang-en">Built a reproducible research-engineering template, cutting experiment iteration time by ~40%; results under submission.</span>
+							</li>
+						</ul>
+					</div>
+
+					<div class="item">
+						<div class="row">
+							<div class="row-main">
+								<strong>
+									<span class="lang-zh">病理图像的自监督表征学习</span>
+									<span class="lang-en">Self-Supervised Representation Learning for Pathology</span>
+								</strong>,
+								<span class="lang-zh">研究助理</span><span class="lang-en">Research Assistant</span>
+							</div>
+							<div class="row-date">2022.9 - 2023.8</div>
+						</div>
+						<ul class="bullets">
+							<li>
+								<span class="lang-zh">在大规模无标注病理图像上预训练表征模型，用于下游诊断任务。</span>
+								<span class="lang-en">Pre-trained representation models on large-scale unlabeled pathology images for downstream diagnosis.</span>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				{/* ===================== Publications ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">代表性论文</span><span class="lang-en">Selected Publications</span>
+					</h2>
+					<ol class="pubs">
+						<li>
+							<span class="me">Zhentai</span>, Co-author A, Co-author B.
+							<span class="lang-zh">面向肾病理的弱监督超微结构分割.</span>
+							<span class="lang-en">Weakly-Supervised Ultrastructural Segmentation for Renal Pathology.</span>
+							<em>Conference / Journal Name</em>, 2025.
+						</li>
+						<li>
+							Co-author C, <span class="me">Zhentai</span>, Co-author D.
+							<span class="lang-zh">医学影像自监督预训练综述.</span>
+							<span class="lang-en">Self-Supervised Pre-training for Medical Imaging: A Survey.</span>
+							<em>Conference / Journal Name</em>, 2024.
+						</li>
+					</ol>
+				</section>
+
+				{/* ===================== Awards ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">荣誉奖项</span><span class="lang-en">Honors &amp; Awards</span>
+					</h2>
+					<div class="awards">
+						<div class="award">
+							<span class="award-name">
+								<strong><span class="lang-zh">国家奖学金</span><span class="lang-en">National Scholarship</span></strong>,
+								<span class="lang-zh">研究生最高荣誉</span><span class="lang-en">top graduate honor</span>
+							</span>
+							<span class="award-date">2024</span>
+						</div>
+						<div class="award">
+							<span class="award-name">
+								<strong><span class="lang-zh">某某会议 最佳论文提名</span><span class="lang-en">Best Paper Nomination, Conference</span></strong>
+							</span>
+							<span class="award-date">2025</span>
+						</div>
+						<div class="award">
+							<span class="award-name">
+								<strong><span class="lang-zh">校级优秀毕业生</span><span class="lang-en">Distinguished Graduate</span></strong>,
+								<span class="lang-zh">前 1%</span><span class="lang-en">top 1%</span>
+							</span>
+							<span class="award-date">2022</span>
+						</div>
+					</div>
+				</section>
+			</article>
+		</main>
+		<Footer />
+
+		<style>
+			/* The résumé sheet uses its own restrained black-on-white palette,
+			   independent of the site's GameBoy theme, so it reads as a formal
+			   academic document both on screen and when exported to PDF. */
+			.cv {
+				--paper: #ffffff;
+				--doc-ink: #1a1a1a;
+				--doc-sub: #333333;
+				--doc-rule: #1a1a1a;
+				--doc-hair: #cfcfcf;
+			}
+
+			main { width: 820px; }
+
+			/* ---------- toolbar ---------- */
+			.toolbar {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 12px;
+				margin-bottom: 1.2em;
+				flex-wrap: wrap;
+			}
+			.crumb {
+				font-family: var(--font-silk);
+				font-size: 0.7rem;
+				letter-spacing: 1px;
+				color: var(--dim);
+				text-transform: uppercase;
+			}
+			.dl {
+				font-family: var(--font-pixel);
+				font-size: 1rem;
+				background: var(--acc);
+				color: #fff;
+				border: 3px solid var(--shadow);
+				box-shadow: 3px 3px 0 var(--shadow);
+				cursor: pointer;
+				padding: 7px 16px;
+				line-height: 1;
+				transition: transform 0.1s, box-shadow 0.1s;
+			}
+			.dl:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--shadow); }
+
+			/* ---------- the document ---------- */
+			.cv {
+				background: var(--paper);
+				color: var(--doc-ink);
+				font-family: var(--font-serif);
+				font-size: 15.5px;
+				line-height: 1.5;
+				padding: 3.2em 3.4em;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+			}
+
+			/* ---------- header ---------- */
+			.cv-head {
+				text-align: center;
+				margin-bottom: 1.4em;
+			}
+			.name {
+				font-family: var(--font-serif);
+				font-weight: 700;
+				font-size: 2.3rem;
+				letter-spacing: 4px;
+				color: var(--doc-ink);
+				margin: 0 0 0.35em;
+			}
+			.contact {
+				font-size: 0.95rem;
+				color: var(--doc-ink);
+				margin: 0;
+			}
+			.contact a { color: var(--doc-ink); text-decoration: none; }
+			.contact a:hover { text-decoration: underline; }
+			.contact .sep { margin: 0 0.5em; color: #999; }
+
+			/* ---------- section ---------- */
+			.cv-sec { margin-bottom: 1.3em; }
+			.cv-sec:last-child { margin-bottom: 0; }
+			.sec-title {
+				font-family: var(--font-serif);
+				font-weight: 700;
+				font-size: 1.28rem;
+				color: var(--doc-ink);
+				margin: 0 0 0.55em;
+				padding-bottom: 0.15em;
+				border-bottom: 1.5px solid var(--doc-rule);
+			}
+
+			.lead { margin: 0; text-align: justify; }
+
+			/* ---------- item rows ---------- */
+			.item { margin-bottom: 0.75em; }
+			.item:last-child { margin-bottom: 0; }
+			.row {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 1.2em;
+			}
+			.row-main { flex: 1; }
+			.row-main strong { font-weight: 700; }
+			.row-date {
+				white-space: nowrap;
+				flex-shrink: 0;
+				color: var(--doc-ink);
+			}
+			.row-sub {
+				margin: 0.1em 0 0;
+				font-size: 0.92em;
+				color: var(--doc-sub);
+			}
+
+			.bullets { margin: 0.15em 0 0; padding-left: 1.25em; }
+			.bullets li { margin-bottom: 0.15em; }
+
+			.skills { margin: 0; padding-left: 1.25em; }
+			.skills li { margin-bottom: 0.2em; }
+
+			.pubs { margin: 0; padding-left: 1.4em; }
+			.pubs li { margin-bottom: 0.4em; }
+			.me { font-weight: 700; }
+
+			/* ---------- awards (table-like rows) ---------- */
+			.awards { margin: 0; }
+			.award {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 1.2em;
+				padding: 0.32em 0;
+				border-bottom: 1px solid var(--doc-hair);
+			}
+			.award:last-child { border-bottom: none; }
+			.award-date { white-space: nowrap; flex-shrink: 0; color: var(--doc-sub); }
+
+			@media (max-width: 560px) {
+				.cv { padding: 2em 1.5em; }
+				.name { font-size: 1.8rem; letter-spacing: 2px; }
+				.row, .award { flex-direction: column; gap: 0; }
+			}
+
+			/* ---------- print / PDF export ---------- */
+			@media print {
+				/* The site header is position:sticky; when printing, Chrome can stamp
+				   a composited ghost of its pixel logo onto the page at the current
+				   scroll offset. display:none doesn't reliably tear that layer down,
+				   so drop the sticky positioning and collapse the header to nothing.
+				   Scope to the top-level site header only — `.cv-head` is also a
+				   <header> and must keep printing. */
+				:global(body > header) {
+					position: static !important;
+					visibility: hidden !important;
+					height: 0 !important;
+					padding: 0 !important;
+					border: 0 !important;
+					overflow: hidden !important;
+				}
+				:global(footer),
+				.no-print { display: none !important; }
+				:global(body) {
+					background: #fff !important;
+					background-image: none !important;
+				}
+				main { width: 100%; max-width: 100%; padding: 0; margin: 0; }
+				.cv {
+					background: #fff;
+					box-shadow: none;
+					padding: 0;
+					font-size: 10.5pt;
+				}
+				.cv-sec { break-inside: avoid; }
+				.item, .pubs li, .award { break-inside: avoid; }
+			}
+		</style>
+
+		<style is:global>
+			@page {
+				size: A4;
+				margin: 16mm 16mm;
+			}
+		</style>
+
+		<script is:inline>
+			document.addEventListener('click', (e) => {
+				if (e.target.closest('#print-resume')) window.print();
+			});
+		</script>
+	</body>
+</html>
