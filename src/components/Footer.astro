@@ -1,5 +1,11 @@
 ---
 import { GITHUB_URL, EMAIL } from '../consts';
+
+interface Props {
+	showEmail?: boolean;
+}
+
+const { showEmail = true } = Astro.props;
 const today = new Date();
 ---
 
@@ -11,7 +17,7 @@ const today = new Date();
 		</span>
 		<div class="links">
 			<a href={GITHUB_URL} target="_blank" rel="noopener">github</a>
-			<a href={`mailto:${EMAIL}`}>email</a>
+			{showEmail && <a href={`mailto:${EMAIL}`}>email</a>}
 			<a href="/rss.xml">rss</a>
 		</div>
 	</div>
