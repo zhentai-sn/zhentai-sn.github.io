@@ -3,7 +3,6 @@ import { Font } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { GITHUB_URL, EMAIL } from '../consts';
 ---
 
 <!doctype html>
@@ -11,7 +10,7 @@ import { GITHUB_URL, EMAIL } from '../consts';
 	<head>
 		<BaseHead
 			title="简历 · Résumé"
-			description="真太 · 医学影像深度学习研究者的学术简历 / Zhentai — Curriculum Vitae, medical imaging deep learning researcher"
+			description="张桢泰 · 医学影像深度学习与医疗 AI 应用开发 / Zhentai Zhang — Medical imaging deep learning and healthcare AI application development"
 		/>
 		<Font cssVariable="--font-serif" />
 	</head>
@@ -23,39 +22,62 @@ import { GITHUB_URL, EMAIL } from '../consts';
 				<span class="crumb">
 					<span class="lang-zh">简历</span><span class="lang-en">Résumé</span>
 				</span>
-				<button id="print-resume" class="dl" type="button">
-					<span class="lang-zh">⬇ 下载 / 打印 PDF</span><span class="lang-en">⬇ Download / Print PDF</span>
-				</button>
+				<div class="print-tools">
+					<span class="print-tip">
+						<span class="lang-zh">打印时请在“更多设置”中关闭“页眉和页脚”</span>
+						<span class="lang-en">Disable “Headers and footers” in More settings</span>
+					</span>
+					<button id="print-resume" class="dl" type="button">
+						<span class="lang-zh">⬇ 下载 / 打印 PDF</span><span class="lang-en">⬇ Download / Print PDF</span>
+					</button>
+				</div>
 			</div>
 
 			<article class="cv">
 				{/* ===================== Header ===================== */}
 				<header class="cv-head">
-					<h1 class="name">ZHENTAI</h1>
-					<p class="contact">
-						<a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-						<span class="sep">·</span>
-						<span>(+86) 123-4567-8910</span>
-						<span class="sep">·</span>
-						<a href={GITHUB_URL} target="_blank" rel="noopener">github.com/zhentai-sn</a>
-					</p>
+					<h1 class="name">
+						<span class="lang-zh">张桢泰</span><span class="lang-en">ZHENTAI ZHANG</span>
+					</h1>
+					<div class="head-meta">
+						<p class="meta-item objective">
+							<span class="lang-zh">求职意向：AI 算法工程师</span>
+							<span class="lang-en">Target Role: AI Algorithm Engineer</span>
+						</p>
+						<p class="meta-item location">
+							<span class="lang-zh">求职地：深圳</span>
+							<span class="lang-en">Preferred Location: Shenzhen</span>
+						</p>
+						<p class="meta-item contact-item">
+							<span class="lang-zh">邮箱：</span><span class="lang-en">Email: </span>
+							<button class="contact-reveal" type="button" data-contact="email">
+								<span class="lang-zh">点击查看</span><span class="lang-en">reveal</span>
+							</button>
+						</p>
+						<p class="meta-item contact-item">
+							<span class="lang-zh">电话：</span><span class="lang-en">Phone: </span>
+							<button class="contact-reveal" type="button" data-contact="phone">
+								<span class="lang-zh">点击查看</span><span class="lang-en">reveal</span>
+							</button>
+						</p>
+					</div>
 				</header>
 
-				{/* ===================== Summary ===================== */}
+				{/* ===================== Profile ===================== */}
 				<section class="cv-sec">
 					<h2 class="sec-title">
-						<span class="lang-zh">个人总结</span><span class="lang-en">Summary</span>
+						<span class="lang-zh">个人简介</span><span class="lang-en">Profile</span>
 					</h2>
 					<p class="lead lang-zh">
-						长期从事医学影像深度学习研究，专注于肾脏病理与透射电镜（TEM）超微结构的自动化分析。
-						对自监督 / 弱监督表征学习、超微结构分割，以及可落地于临床诊断的模型工程有浓厚兴趣，
-						认同开放、连接、共享的科研理念。
+						具备垂类模型训练与智能体应用落地经验，熟悉从数据治理、模型训练评估到应用部署的完整流程。
+						坚持以 AI 原生方式持续成长，探索技术与真实需求的交汇点，创造解决实际问题、经得起时间检验的产品。
 					</p>
 					<p class="lead lang-en">
-						Researcher in deep learning for medical imaging, focused on the automated analysis of
-						renal pathology and ultrastructure in transmission electron microscopy (TEM). Deeply
-						interested in self-/weakly-supervised representation learning, ultrastructural
-						segmentation, and deployable model engineering for clinical diagnosis.
+						Experienced in vertical-domain model training and agent application delivery, with
+						end-to-end familiarity spanning data governance, model training and evaluation, and
+						application deployment. I continue to grow through AI-native ways of working, explore
+						where technology meets real-world needs, and create products that solve practical
+						problems and stand the test of time.
 					</p>
 				</section>
 
@@ -68,32 +90,181 @@ import { GITHUB_URL, EMAIL } from '../consts';
 					<div class="item">
 						<div class="row">
 							<div class="row-main">
-								<strong>某某大学 (University)</strong>,
-								<span class="lang-zh">计算机科学与技术, 博士研究生</span>
-								<span class="lang-en">Computer Science, Ph.D. Candidate</span>
+								<strong>
+									<span class="lang-zh">南方医科大学</span>
+									<span class="lang-en">Southern Medical University</span>
+								</strong>,
+								<span class="lang-zh">电子信息（生物医学工程）, 硕士</span>
+								<span class="lang-en">Electronic Information (Biomedical Engineering), Master's Degree</span>
 							</div>
-							<div class="row-date">2022.9 - <span class="lang-zh">至今</span><span class="lang-en">Present</span></div>
+							<div class="row-date">2022.09 - 2025.06</div>
 						</div>
-						<p class="row-sub">
-							<span class="lang-zh">研究方向：医学影像深度学习 · 导师：某某教授 · 预计 2026 年 6 月毕业</span>
-							<span class="lang-en">Focus: deep learning for medical imaging · Advisor: Prof. Name · Expected June 2026</span>
-						</p>
+						<div class="edu-details">
+							<span class="edu-courses lang-zh">主要课程：医学成像关键技术、算法设计与分析、数理统计与随机过程、数值分析</span>
+							<span class="edu-courses lang-en">Coursework: Medical Imaging, Algorithm Design, Statistics &amp; Stochastic Processes, Numerical Analysis</span>
+							<span class="edu-gpa">GPA 3.4/4</span>
+						</div>
 					</div>
 
 					<div class="item">
 						<div class="row">
 							<div class="row-main">
-								<strong>某某大学 (University)</strong>,
-								<span class="lang-zh">生物医学工程, 工学学士</span>
-								<span class="lang-en">Biomedical Engineering, B.Eng.</span>
+								<strong>
+									<span class="lang-zh">南方医科大学</span>
+									<span class="lang-en">Southern Medical University</span>
+								</strong>,
+								<span class="lang-zh">生物医学工程, 学士</span>
+								<span class="lang-en">Biomedical Engineering, Bachelor's Degree</span>
 							</div>
-							<div class="row-date">2018.9 - 2022.6</div>
+							<div class="row-date">2018.09 - 2022.07</div>
 						</div>
-						<p class="row-sub">
-							<span class="lang-zh">排名 1/100 (前 1%), 国家奖学金, 优秀毕业生, GPA 3.8/4.0</span>
-							<span class="lang-en">Rank 1/100 (top 1%), National Scholarship, Distinguished Graduate, GPA 3.8/4.0</span>
-						</p>
+						<div class="edu-details">
+							<span class="edu-courses lang-zh">主要课程：数字图像处理、模式识别、CT 和 MR 成像原理与技术、病理学</span>
+							<span class="edu-courses lang-en">Coursework: Digital Image Processing, Pattern Recognition, CT/MR Imaging, Pathology</span>
+							<span class="edu-gpa">GPA 3.7/5</span>
+						</div>
 					</div>
+				</section>
+
+				{/* ===================== Work Experience ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">工作经历</span><span class="lang-en">Work Experience</span>
+					</h2>
+
+					<div class="item">
+						<div class="row">
+							<div class="row-main">
+								<strong>广东行稳数智科技有限公司</strong>,
+								<span class="lang-zh">AI 算法工程师</span>
+								<span class="lang-en">AI Algorithm Engineer</span>
+							</div>
+							<div class="row-date">2025.03 - <span class="lang-zh">至今</span><span class="lang-en">Present</span></div>
+						</div>
+						<ul class="bullets">
+							<li>
+								<span class="lang-zh">研发 Multi-Agent 与语音 Agent 应用，落地方案生成、基于用户画像的智能分组与方案匹配；负责智能外呼中的 Agent 与算法模块研发，应用上线后累计服务 5 万+ 人次。</span>
+								<span class="lang-en">Develop Multi-Agent and voice-agent applications for plan generation, profile-based user grouping, and plan matching; own the Agent and algorithm modules for an intelligent outbound-calling application that has served 50,000+ interactions since launch.</span>
+							</li>
+							<li>
+								<span class="lang-zh">设计并迭代生产级知识库与 RAG 系统，基于 RAGFlow、Milvus、LlamaIndex 与 GraphRAG，实现文档解析、向量检索，增强模型对垂类领域知识的召回能力。</span>
+								<span class="lang-en">Design and iterate production knowledge bases and RAG systems with RAGFlow, Milvus, LlamaIndex, and GraphRAG, enabling document parsing and vector retrieval while improving model recall of vertical-domain knowledge.</span>
+							</li>
+							<li>
+								<span class="lang-zh">建设与维护 AI 基础设施，打通模型网关（LiteLLM）、推理服务（vLLM、Xinference）、LLM 链路观测（Langfuse）以及指标监控与告警（Prometheus、Grafana、Nightingale）全链路。</span>
+								<span class="lang-en">Build and maintain AI infrastructure spanning the model gateway (LiteLLM), inference services (vLLM, Xinference), LLM tracing (Langfuse), and metrics monitoring and alerting (Prometheus, Grafana, Nightingale).</span>
+							</li>
+							<li>
+								<span class="lang-zh">向 AI 全栈工程方向拓展，逐步承担算法、后端与前端的端到端需求交付，推进功能从需求分析、方案设计到上线迭代的完整闭环。</span>
+								<span class="lang-en">Expand toward AI full-stack engineering by progressively owning end-to-end delivery across algorithms, backend, and frontend, from requirements analysis and solution design through launch and iteration.</span>
+							</li>
+						</ul>
+					</div>
+
+					<div class="item">
+						<div class="row">
+							<div class="row-main">
+								<strong>
+									<span class="lang-zh">科大讯飞华南人工智能研究院</span>
+									<span class="lang-en">iFLYTEK South China AI Research Institute</span>
+								</strong>,
+								<span class="lang-zh">助理算法工程师</span>
+								<span class="lang-en">Assistant Algorithm Engineer</span>
+							</div>
+							<div class="row-date">2024.11 - 2025.02</div>
+						</div>
+						<ul class="bullets">
+							<li>
+								<span class="lang-zh">参与胸部 X 光图文数据的收集清洗，训练胸片病变检测模型生成细粒度语义标注。</span>
+								<span class="lang-en">Collected and cleaned chest X-ray image-text data, and trained lesion-detection models to generate fine-grained semantic annotations.</span>
+							</li>
+							<li>
+								<span class="lang-zh">构建诊断文本标注评估工具，分析线上回流数据，协助完成胸片图文大模型评估上线。</span>
+								<span class="lang-en">Built a diagnostic-text annotation and evaluation tool, analyzed production feedback data, and supported the evaluation and launch of a chest X-ray vision-language model.</span>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				{/* ===================== Research ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">项目经历</span><span class="lang-en">Projects</span>
+					</h2>
+
+					<div class="item">
+						<div class="row">
+							<div class="row-main">
+								<strong>
+									<span class="lang-zh">肾脏活检透射电镜图像处理分析研究（国自然项目）</span>
+									<span class="lang-en">Renal Biopsy TEM Image Processing and Analysis (NSFC Project)</span>
+								</strong>
+							</div>
+							<div class="row-date">2022 - 2025</div>
+						</div>
+						<p class="row-sub project-background">
+							<span class="lang-zh">项目背景：对纳米尺度的肾脏组织与病变进行识别与分析，量化相关指标以辅助病理诊断。</span>
+							<span class="lang-en">Background: Identified and analyzed renal tissues and lesions at the nanoscale, quantifying relevant indicators to support pathological diagnosis.</span>
+						</p>
+						<ul class="bullets">
+							<li>
+								<span class="lang-zh">搭建并维护基于 CVAT 的多人协同数据标注平台。</span>
+								<span class="lang-en">Built and maintained a CVAT-based collaborative data annotation platform.</span>
+							</li>
+							<li>
+								<span class="lang-zh">研发面向肾小球电镜图像的自监督预训练算法，提出融合全局聚类与局部恢复的 GCLR，以及基于语义自适应区域划分的 USRegCon，兼顾全局上下文与局部细节表征，提升有限标注条件下的分割性能（论文 2 篇）。</span>
+								<span class="lang-en">Proposed GCLR (global clustering and local restoration) and USRegCon (semantic-adaptive region contrast) self-supervised tasks for glomerular TEM images, learning global context and local details to improve segmentation with limited labels (2 publications).</span>
+							</li>
+							<li>
+								<span class="lang-zh">训练并迭代分割（U-Net、SAM）、检测（Faster R-CNN、YOLO、DINO）、分类（ResNet、ViT）及图文多模态模型（Qwen-VL、InternVL）。</span>
+								<span class="lang-en">Trained and iterated segmentation (U-Net, SAM), detection (Faster R-CNN, YOLO, DINO), classification (ResNet, ViT), and vision-language models (Qwen-VL, InternVL).</span>
+							</li>
+							<li>
+								<span class="lang-zh">结合模型输出与图像处理算法，构建肾脏超微特征自动量化框架及应用（论文 1 篇）。</span>
+								<span class="lang-en">Combined model outputs with image-processing algorithms to build an automated renal ultrastructure quantification framework and application (1 publication).</span>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				{/* ===================== Publications ===================== */}
+				<section class="cv-sec">
+					<h2 class="sec-title">
+						<span class="lang-zh">发表论文</span><span class="lang-en">Publications</span>
+					</h2>
+					<ol class="pubs">
+						<li>
+							<span class="me">Zhang Z.</span>, Weng D., Zhang G., et al.
+							<a href="https://doi.org/10.1016/j.cmpb.2026.109431" target="_blank" rel="noopener">
+								Glo-MMF: A modular multi-model framework for automated morphometry of glomerular ultrastructural features
+							</a>.
+							<em>Comput. Methods Programs Biomed.</em>, 283:109431, 2026.
+							<span class="pub-metric">
+								(<span class="lang-zh">中科院医学二区，JIF 2025：6.4</span><span class="lang-en">CAS Q2 · JIF 2025: 6.4</span>)
+							</span>
+						</li>
+						<li>
+							Lin G., <span class="me">Zhang Z.</span>, Long K., et al.
+							<a href="https://doi.org/10.1016/j.artmed.2023.102720" target="_blank" rel="noopener">
+								GCLR: A self-supervised representation learning pretext task for glomerular filtration barrier segmentation in TEM images
+							</a>.
+							<em>Artif. Intell. Med.</em>, 146:102720, 2023.
+							<span class="pub-metric">
+								(<span class="lang-zh">中科院工程技术一区，JIF 2025：7.8</span><span class="lang-en">CAS Q1 · JIF 2025: 7.8</span>)
+							</span>
+						</li>
+						<li>
+							Lin G., <span class="me">Zhang Z.</span>, Lu Y., et al.
+							<a href="https://doi.org/10.12122/j.issn.1673-4254.2023.05.18" target="_blank" rel="noopener">
+								<span class="lang-zh">肾小球超微结构分割算法：基于区域级对比学习的深度模型</span>
+								<span class="lang-en">A region-level contrastive learning-based deep model for glomerular ultrastructure segmentation</span>
+							</a>.
+							<em>J. South. Med. Univ.</em>, 43(5):815-824, 2023.
+							<span class="pub-metric">
+								(<span class="lang-zh">中文核心</span><span class="lang-en">Chinese Core Journal</span>)
+							</span>
+						</li>
+					</ol>
 				</section>
 
 				{/* ===================== Skills ===================== */}
@@ -103,117 +274,24 @@ import { GITHUB_URL, EMAIL } from '../consts';
 					</h2>
 					<ul class="skills">
 						<li>
-							<span class="lang-zh">编程语言：</span><span class="lang-en">Languages: </span>
-							Python, PyTorch, C++, TypeScript, Bash
+							<span class="lang-zh">语言与框架：</span><span class="lang-en">Languages &amp; frameworks: </span>
+							Python, C++, PyTorch, FastAPI, LangChain, Agno
 						</li>
 						<li>
-							<span class="lang-zh">关键词：</span><span class="lang-en">Keywords: </span>
-							Segmentation / Self-supervised / Weakly-supervised / MONAI / Docker / MLOps
+							<span class="lang-zh">模型训练：</span><span class="lang-en">Model training: </span>
+							<span class="lang-zh">数据采集、标注与清洗、垂类模型预训练和微调训练、模型评估、部署优化</span>
+							<span class="lang-en">Data collection, annotation and cleaning; domain-specific model pre-training and fine-tuning; model evaluation; deployment optimization</span>
+						</li>
+						<li>
+							<span class="lang-zh">Agent 应用：</span><span class="lang-en">Agent applications: </span>
+							<span class="lang-zh">多智能体框架、语音智能体、知识库（RAG、知识图谱）</span>
+							<span class="lang-en">Multi-agent frameworks, voice agents, knowledge bases (RAG, knowledge graphs)</span>
 						</li>
 					</ul>
 				</section>
-
-				{/* ===================== Research ===================== */}
-				<section class="cv-sec">
-					<h2 class="sec-title">
-						<span class="lang-zh">研究课题</span><span class="lang-en">Research</span>
-					</h2>
-
-					<div class="item">
-						<div class="row">
-							<div class="row-main">
-								<strong>
-									<span class="lang-zh">肾小球超微结构的弱监督分割</span>
-									<span class="lang-en">Weakly-Supervised Segmentation of Glomerular Ultrastructure</span>
-								</strong>,
-								<span class="lang-zh">项目负责人</span><span class="lang-en">Lead</span>
-							</div>
-							<div class="row-date">2023.9 - <span class="lang-zh">至今</span><span class="lang-en">Present</span></div>
-						</div>
-						<ul class="bullets">
-							<li>
-								<span class="lang-zh">提出面向 TEM 图像的弱监督分割框架，在有限标注下达到临床可用精度。</span>
-								<span class="lang-en">Proposed a weakly-supervised segmentation framework for TEM images, reaching clinically usable accuracy under limited annotation.</span>
-							</li>
-							<li>
-								<span class="lang-zh">构建可复现的科研工程模板，缩短实验迭代周期约 40%，相关成果已投稿。</span>
-								<span class="lang-en">Built a reproducible research-engineering template, cutting experiment iteration time by ~40%; results under submission.</span>
-							</li>
-						</ul>
-					</div>
-
-					<div class="item">
-						<div class="row">
-							<div class="row-main">
-								<strong>
-									<span class="lang-zh">病理图像的自监督表征学习</span>
-									<span class="lang-en">Self-Supervised Representation Learning for Pathology</span>
-								</strong>,
-								<span class="lang-zh">研究助理</span><span class="lang-en">Research Assistant</span>
-							</div>
-							<div class="row-date">2022.9 - 2023.8</div>
-						</div>
-						<ul class="bullets">
-							<li>
-								<span class="lang-zh">在大规模无标注病理图像上预训练表征模型，用于下游诊断任务。</span>
-								<span class="lang-en">Pre-trained representation models on large-scale unlabeled pathology images for downstream diagnosis.</span>
-							</li>
-						</ul>
-					</div>
-				</section>
-
-				{/* ===================== Publications ===================== */}
-				<section class="cv-sec">
-					<h2 class="sec-title">
-						<span class="lang-zh">代表性论文</span><span class="lang-en">Selected Publications</span>
-					</h2>
-					<ol class="pubs">
-						<li>
-							<span class="me">Zhentai</span>, Co-author A, Co-author B.
-							<span class="lang-zh">面向肾病理的弱监督超微结构分割.</span>
-							<span class="lang-en">Weakly-Supervised Ultrastructural Segmentation for Renal Pathology.</span>
-							<em>Conference / Journal Name</em>, 2025.
-						</li>
-						<li>
-							Co-author C, <span class="me">Zhentai</span>, Co-author D.
-							<span class="lang-zh">医学影像自监督预训练综述.</span>
-							<span class="lang-en">Self-Supervised Pre-training for Medical Imaging: A Survey.</span>
-							<em>Conference / Journal Name</em>, 2024.
-						</li>
-					</ol>
-				</section>
-
-				{/* ===================== Awards ===================== */}
-				<section class="cv-sec">
-					<h2 class="sec-title">
-						<span class="lang-zh">荣誉奖项</span><span class="lang-en">Honors &amp; Awards</span>
-					</h2>
-					<div class="awards">
-						<div class="award">
-							<span class="award-name">
-								<strong><span class="lang-zh">国家奖学金</span><span class="lang-en">National Scholarship</span></strong>,
-								<span class="lang-zh">研究生最高荣誉</span><span class="lang-en">top graduate honor</span>
-							</span>
-							<span class="award-date">2024</span>
-						</div>
-						<div class="award">
-							<span class="award-name">
-								<strong><span class="lang-zh">某某会议 最佳论文提名</span><span class="lang-en">Best Paper Nomination, Conference</span></strong>
-							</span>
-							<span class="award-date">2025</span>
-						</div>
-						<div class="award">
-							<span class="award-name">
-								<strong><span class="lang-zh">校级优秀毕业生</span><span class="lang-en">Distinguished Graduate</span></strong>,
-								<span class="lang-zh">前 1%</span><span class="lang-en">top 1%</span>
-							</span>
-							<span class="award-date">2022</span>
-						</div>
-					</div>
-				</section>
 			</article>
 		</main>
-		<Footer />
+		<Footer showEmail={false} />
 
 		<style>
 			/* The résumé sheet uses its own restrained black-on-white palette,
@@ -258,6 +336,20 @@ import { GITHUB_URL, EMAIL } from '../consts';
 				transition: transform 0.1s, box-shadow 0.1s;
 			}
 			.dl:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--shadow); }
+			.print-tools {
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.print-tip {
+				max-width: 280px;
+				font-size: 0.78rem;
+				line-height: 1.25;
+				color: var(--dim);
+				text-align: right;
+			}
 
 			/* ---------- the document ---------- */
 			.cv {
@@ -272,7 +364,11 @@ import { GITHUB_URL, EMAIL } from '../consts';
 
 			/* ---------- header ---------- */
 			.cv-head {
-				text-align: center;
+				display: grid;
+				grid-template-columns: minmax(10rem, 30%) minmax(0, 1fr);
+				align-items: center;
+				gap: 1.75em;
+				text-align: left;
 				margin-bottom: 1.4em;
 			}
 			.name {
@@ -281,16 +377,51 @@ import { GITHUB_URL, EMAIL } from '../consts';
 				font-size: 2.3rem;
 				letter-spacing: 4px;
 				color: var(--doc-ink);
-				margin: 0 0 0.35em;
+				margin: 0;
+				flex-shrink: 0;
 			}
-			.contact {
+			.head-meta {
+				min-width: 0;
+				display: grid;
+				grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+				align-items: baseline;
+				justify-items: start;
+				column-gap: 1.5em;
+				row-gap: 0.45em;
+				text-align: left;
+			}
+			.meta-item {
+				min-width: 0;
+				margin: 0;
+				white-space: nowrap;
+			}
+			.objective,
+			.location {
+				font-size: 0.98rem;
+				font-weight: 600;
+				color: var(--doc-sub);
+			}
+			.contact-item {
 				font-size: 0.95rem;
 				color: var(--doc-ink);
-				margin: 0;
+				display: flex;
+				align-items: center;
 			}
-			.contact a { color: var(--doc-ink); text-decoration: none; }
-			.contact a:hover { text-decoration: underline; }
-			.contact .sep { margin: 0 0.5em; color: #999; }
+			.contact-reveal {
+				font: inherit;
+				color: var(--doc-ink);
+				background: #f4f4f4;
+				border: 1px dashed #999;
+				border-radius: 2px;
+				padding: 0.12em 0.45em;
+				cursor: pointer;
+			}
+			.contact-reveal:hover,
+			.contact-reveal:focus-visible {
+				background: #e8e8e8;
+				border-color: var(--doc-ink);
+			}
+			.contact-value { border-bottom: 1px dotted #999; }
 
 			/* ---------- section ---------- */
 			.cv-sec { margin-bottom: 1.3em; }
@@ -328,34 +459,87 @@ import { GITHUB_URL, EMAIL } from '../consts';
 				font-size: 0.92em;
 				color: var(--doc-sub);
 			}
+			.edu-details {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				gap: 1em;
+				margin-top: 0.1em;
+				font-size: 0.92em;
+				color: var(--doc-sub);
+			}
+			.edu-courses {
+				min-width: 0;
+				white-space: nowrap;
+			}
+			.edu-gpa {
+				flex-shrink: 0;
+				white-space: nowrap;
+				color: var(--doc-ink);
+			}
 
-			.bullets { margin: 0.15em 0 0; padding-left: 1.25em; }
-			.bullets li { margin-bottom: 0.15em; }
+			.bullets {
+				margin: 0.15em 0 0;
+				padding-left: 1.25em;
+				list-style: none;
+			}
+			.bullets li {
+				position: relative;
+				margin-bottom: 0.15em;
+			}
+			.bullets li::before {
+				content: "•";
+				position: absolute;
+				left: -1.05em;
+			}
 
 			.skills { margin: 0; padding-left: 1.25em; }
 			.skills li { margin-bottom: 0.2em; }
 
-			.pubs { margin: 0; padding-left: 1.4em; }
-			.pubs li { margin-bottom: 0.4em; }
-			.me { font-weight: 700; }
-
-			/* ---------- awards (table-like rows) ---------- */
-			.awards { margin: 0; }
-			.award {
-				display: flex;
-				justify-content: space-between;
-				align-items: baseline;
-				gap: 1.2em;
-				padding: 0.32em 0;
-				border-bottom: 1px solid var(--doc-hair);
+			.pubs {
+				margin: 0;
+				padding-left: 1.35em;
+				font-size: 0.9em;
+				line-height: 1.35;
 			}
-			.award:last-child { border-bottom: none; }
-			.award-date { white-space: nowrap; flex-shrink: 0; color: var(--doc-sub); }
+			.pubs li { margin-bottom: 0.28em; }
+			.pubs a {
+				color: var(--doc-ink);
+				text-decoration: underline;
+				text-decoration-color: #888;
+				text-decoration-thickness: 1px;
+				text-underline-offset: 2px;
+			}
+			.pubs a:hover { text-decoration-color: var(--doc-ink); }
+			.pub-metric {
+				color: var(--doc-sub);
+				font-weight: 400;
+				white-space: nowrap;
+			}
+			.me { font-weight: 700; }
 
 			@media (max-width: 560px) {
 				.cv { padding: 2em 1.5em; }
 				.name { font-size: 1.8rem; letter-spacing: 2px; }
-				.row, .award { flex-direction: column; gap: 0; }
+				.cv-head {
+					grid-template-columns: minmax(0, 1fr);
+					justify-items: center;
+					gap: 0.65em;
+					text-align: center;
+				}
+				.head-meta {
+					grid-template-columns: minmax(0, 1fr);
+					justify-items: center;
+					row-gap: 0.35em;
+					text-align: center;
+				}
+				.row { flex-direction: column; gap: 0; }
+				.edu-details {
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 0;
+				}
+				.edu-courses { white-space: normal; }
 			}
 
 			/* ---------- print / PDF export ---------- */
@@ -385,22 +569,86 @@ import { GITHUB_URL, EMAIL } from '../consts';
 					background: #fff;
 					box-shadow: none;
 					padding: 0;
-					font-size: 10.5pt;
+					font-size: 9.8pt;
+					line-height: 1.33;
+				}
+				.cv-head {
+					gap: 1.5em;
+					margin-bottom: 0.7em;
+				}
+				.name { font-size: 2rem; }
+				.head-meta {
+					column-gap: 1em;
+					row-gap: 0.18em;
+				}
+				.contact-reveal {
+					background: none;
+					border: 0;
+					padding: 0;
+				}
+				.cv-sec { margin-bottom: 0.62em; }
+				.sec-title {
+					font-size: 1.15rem;
+					margin-bottom: 0.28em;
+					padding-bottom: 0.08em;
+				}
+				.item { margin-bottom: 0.38em; }
+				.bullets { margin-top: 0.08em; }
+				.bullets li,
+				.skills li { margin-bottom: 0.06em; }
+				.pubs {
+					font-size: 0.86em;
+					line-height: 1.24;
+				}
+				.pubs li { margin-bottom: 0.12em; }
+				:global(html[data-lang='zh']) .cv {
+					font-size: 10.6pt;
+					line-height: 1.4;
+				}
+				:global(html[data-lang='zh']) .cv-sec { margin-bottom: 0.78em; }
+				:global(html[data-lang='zh']) .sec-title { margin-bottom: 0.34em; }
+				:global(html[data-lang='zh']) .item { margin-bottom: 0.48em; }
+				:global(html[data-lang='zh']) .bullets li,
+				:global(html[data-lang='zh']) .skills li { margin-bottom: 0.1em; }
+				:global(html[data-lang='zh']) .pubs {
+					font-size: 0.9em;
+					line-height: 1.28;
 				}
 				.cv-sec { break-inside: avoid; }
-				.item, .pubs li, .award { break-inside: avoid; }
+				.item, .pubs li { break-inside: avoid; }
 			}
 		</style>
 
 		<style is:global>
 			@page {
 				size: A4;
-				margin: 16mm 16mm;
+				margin: 10mm 12mm;
 			}
 		</style>
 
 		<script is:inline>
 			document.addEventListener('click', (e) => {
+				if (!(e.target instanceof Element)) return;
+
+				const revealButton = e.target.closest('.contact-reveal');
+				if (revealButton) {
+					const encodedContacts = {
+						email: [122, 104, 101, 110, 116, 97, 105, 46, 115, 110, 64, 113, 113, 46, 99, 111, 109],
+						phone: [49, 51, 50, 50, 54, 55, 49, 51, 55, 48, 52],
+					};
+					const type = revealButton.dataset.contact;
+					const codes = encodedContacts[type];
+					if (!codes) return;
+
+					const value = String.fromCharCode(...codes);
+					const link = document.createElement('a');
+					link.className = 'contact-value';
+					link.href = type === 'email' ? `mailto:${value}` : `tel:+86${value}`;
+					link.textContent = type === 'email' ? value : `(+86) ${value}`;
+					revealButton.replaceWith(link);
+					return;
+				}
+
 				if (e.target.closest('#print-resume')) window.print();
 			});
 		</script>
