@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { PROJECTS, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import avatarOwl from '../assets/avatar-owl.png';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -20,24 +21,33 @@ const posts = (await getCollection('blog'))
 		<Header />
 		<main>
 			<section class="hero px">
-				<span class="badge">PLAYER 1 · ONLINE</span>
-				<h1 class="lang-zh">嗨，我是<span class="g">真太</span><br />做医学 AI 的人</h1>
-				<h1 class="lang-en">Hi, I'm <span class="g">Zhentai</span><br />I do medical AI</h1>
-				<p class="lang-zh">
-					在肾病理与深度学习之间来回横跳。这里记录我的研究笔记、开源项目，以及一些关于工具与心法的碎碎念。
-				</p>
-				<p class="lang-en">
-					Bouncing between renal pathology and deep learning. Here I keep my research notes,
-					open-source projects, and the occasional note on tools &amp; craft.
-				</p>
-				<div class="cta">
-					<a class="primary px-sm" href="/blog"
-						><span class="lang-zh">▶ 读文章</span><span class="lang-en">▶ Read posts</span></a
-					>
-					<a class="ghost px-sm" href="/about"
-						><span class="lang-zh">关于我</span><span class="lang-en">About</span></a
-					>
+				<div class="hero-copy">
+					<span class="badge">PLAYER 1 · ONLINE</span>
+					<h1 class="lang-zh">嗨，我是<span class="g">真太</span><br />做医学 AI 的人</h1>
+					<h1 class="lang-en">Hi, I'm <span class="g">Zhentai</span><br />I do medical AI</h1>
+					<p class="lang-zh">
+						在肾病理与深度学习之间来回横跳。这里记录我的研究笔记、开源项目，以及一些关于工具与心法的碎碎念。
+					</p>
+					<p class="lang-en">
+						Bouncing between renal pathology and deep learning. Here I keep my research notes,
+						open-source projects, and the occasional note on tools &amp; craft.
+					</p>
+					<div class="cta">
+						<a class="primary px-sm" href="/blog"
+							><span class="lang-zh">▶ 读文章</span><span class="lang-en">▶ Read posts</span></a
+						>
+						<a class="ghost px-sm" href="/about"
+							><span class="lang-zh">关于我</span><span class="lang-en">About</span></a
+						>
+					</div>
 				</div>
+				<img
+					class="hero-art"
+					src={avatarOwl.src}
+					alt="黑白吉卜力风格的可爱猫头鹰画像"
+					width={768}
+					height={960}
+				/>
 			</section>
 
 			<h2 class="sec">
@@ -112,6 +122,16 @@ const posts = (await getCollection('blog'))
 				background: var(--card);
 				padding: 2.4em 2.2em;
 				margin-bottom: 3em;
+				display: grid;
+				grid-template-columns: 1fr auto;
+				align-items: center;
+				gap: 2em;
+			}
+			.hero-art {
+				width: 280px;
+				height: auto;
+				border: none;
+				mix-blend-mode: multiply;
 			}
 			.badge {
 				display: inline-block;
@@ -252,6 +272,16 @@ const posts = (await getCollection('blog'))
 				color: #fff;
 				transform: translate(1px, 1px);
 				box-shadow: 2px 2px 0 var(--shadow);
+			}
+
+			@media (max-width: 860px) {
+				.hero {
+					grid-template-columns: 1fr;
+				}
+				.hero-art {
+					width: 220px;
+					margin: 0 auto;
+				}
 			}
 
 			@media (max-width: 520px) {
