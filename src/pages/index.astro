@@ -4,7 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { PROJECTS, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -66,6 +66,44 @@ const posts = (await getCollection('blog'))
 					><span class="lang-zh">查看全部 →</span><span class="lang-en">View all →</span></a
 				>
 			</div>
+
+			<h2 class="sec proj-sec">
+				<span class="px-dot"></span><span class="lang-zh">项目</span><span class="lang-en"
+					>Projects</span
+				>
+			</h2>
+			<ul class="grid proj-grid">
+				{
+					PROJECTS.map((project) => (
+						<li>
+							<div class="card proj px-sm">
+								<h3>{project.name}</h3>
+								<p class="tagline">
+									<span class="lang-zh">{project.tagline}</span>
+									<span class="lang-en">{project.taglineEn}</span>
+								</p>
+								<p>
+									<span class="lang-zh">{project.descZh}</span>
+									<span class="lang-en">{project.descEn}</span>
+								</p>
+								<div class="links">
+									<a class="primary px-sm" href={project.url} target="_blank" rel="noopener">
+										<span class="lang-zh">▶ 打开</span>
+										<span class="lang-en">▶ Launch</span>
+									</a>
+									<a class="ghost px-sm" href={project.post}>
+										<span class="lang-zh">读一读</span>
+										<span class="lang-en">Read up</span>
+									</a>
+									<a class="ghost px-sm" href={project.repo} target="_blank" rel="noopener">
+										GitHub
+									</a>
+								</div>
+							</div>
+						</li>
+					))
+				}
+			</ul>
 		</main>
 		<Footer />
 
@@ -163,6 +201,40 @@ const posts = (await getCollection('blog'))
 				font-size: 0.92rem;
 				color: var(--dim);
 				margin: 0;
+			}
+
+			.proj-sec { margin-top: 3em; }
+			.proj-grid { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+			.proj { cursor: default; }
+			.proj:hover {
+				transform: none;
+				box-shadow: none;
+			}
+			.proj h3 { margin-top: 0; }
+			.proj .tagline {
+				font-family: var(--font-pixel);
+				font-size: 1rem;
+				color: var(--acc-d);
+				margin: 0 0 0.6em;
+			}
+			.proj .links {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+				margin-top: 1.1em;
+			}
+			.proj .links a {
+				font-family: var(--font-pixel);
+				font-size: 0.95rem;
+				text-decoration: none;
+				padding: 5px 14px;
+				transition: transform 0.1s, box-shadow 0.1s;
+			}
+			.proj .links .primary { background: var(--acc); color: #fff; }
+			.proj .links .ghost { background: var(--bg); color: var(--ink); }
+			.proj .links a:hover {
+				transform: translate(2px, 2px);
+				box-shadow: 2px 2px 0 var(--shadow);
 			}
 
 			.more { margin-top: 2.4em; }

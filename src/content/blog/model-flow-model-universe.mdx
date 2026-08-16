@@ -1,0 +1,138 @@
+---
+title: 'Model Flow：让模型拥有可以被记住的形状'
+description: '一个开源的模型架构可视化实验——把 7 家提供商、20 个版本锁定的开放模型放进同一片 Canvas 星空，远看是体量与物种，近看是可追溯的计算图。'
+pubDate: 'Aug 16 2026'
+tags: ['开源项目', '可视化', '大模型', 'Canvas', 'Model Flow']
+---
+
+<div class="lang-zh">
+
+> **让模型拥有可以被记住的形状。**
+>
+> [▶ 打开 Live Demo](https://model-flow-phi.vercel.app/) · [GitHub 仓库](https://github.com/zhentai-sn/model-flow)
+
+## 起因：参数量给不了直觉
+
+今天我们认识一个模型，靠的是参数量、排行榜、架构缩写和一张节点流程图。这些信息可以**描述**模型，却很难让人**形成直觉**。
+
+你知道某个模型「32B 参数」，但仍然不知道它长什么样；你知道它是 MoE，也说不清它跟同量级的 Dense 模型在结构上究竟差在哪儿。
+
+Model Flow 想换一个顺序：**模型不应该先被解释，而应该先被看见。**
+
+## 做法：形状必须从真实配置里长出来
+
+这个项目最核心的一条约束是——**形状不是包在数据外面的装饰层，形状本身就是数据的另一种表达。**
+
+- 层数 → 可感知的长度、节奏与重复；
+- Hidden size → 主体的厚度与容量感；
+- Attention heads → 真实可数的信息通道；
+- Q/KV 比例 → 查询密度与共享记忆之间的差异；
+- Dense MLP → 附着在主干上的连续计算腔体；
+- MoE experts → 由 Router 连接、被选择性激活的离散计算群。
+
+每一处显眼的视觉差异，都必须能回答一个问题：**它来自配置里的哪个事实？** 答不上来的，就只是风格；跟数据矛盾的，就是误导。
+
+由此也推出第二条：**不同架构必须成为不同物种**。如果所有模型都被塞进同一种胶囊或卡片，真实差异就被模板抹平了。Dense 是连续的脊柱，MoE 是共享主干加离散专家群落，SSM、多模态和混合架构各自还有别的形态。
+
+目前的宇宙里有 **7 个提供商、20 个版本锁定的开放模型、13 个架构 Adapter**：Qwen、DeepSeek、Z.ai、Moonshot、Meta、Mistral、Google，覆盖 MLA / DSA / KDA、MoE 与 LatentMoE、Mamba 类 SSM、视觉入口等结构。
+
+## 我最在意的部分：证据边界
+
+可视化最容易翻车的地方，是把「好看的动画」讲成「模型真的在这么跑」。所以页面上每一处动态都必须归属于四种证据模式之一：
+
+| 模式 | 含义 | 能否表达真实运行状态 |
+| --- | --- | --- |
+| `STRUCTURAL_FACT` | 配置、模型代码或计算图里的结构事实 | 否 |
+| `PUBLIC_RUNTIME` | 已公开、可追溯的历史运行数据 | 仅限对应的公开记录 |
+| `DERIVED` | 参数、布局、感知压缩等派生值 | 否 |
+| `STRUCTURAL_SIM` | 按计算图顺序生成的结构模拟 | 否 |
+
+没有公开运行数据时，默认用 `STRUCTURAL_SIM`，并且**在界面上明说**。同理，配置受限拿不到的模型会被标成 `gated-config-public-metadata`，而不是假装读过私有文件。
+
+## 交互：缩放不是放大，而是揭示
+
+整个宇宙只有一个 Canvas。没有输入时镜头跟着 Provider 质心缓慢巡航，指针、滚轮、触控或键盘随时接管。
+
+选中一个模型时，镜头先在原地 `LOCK`，等 Artifact 通过 checksum 与结构校验后才连续加速——`LOCK → ACCELERATE → REVEAL → ARRIVE`；校验失败就触发 `warp.aborted`，退回进入前的镜头，而不是把半截数据画出来。
+
+抵达之后，同一块 Canvas 上继续往里缩放：雕塑轮廓 → 解剖层 → EXACT 计算图，回放脉冲沿 Artifact 里真实的边移动。往外缩放则逐层折叠、回到它所在的星域。双模型比较保留两个真实端点，用 `DERIVED` 语义对齐连接共享结构，**对不上的结构不会被编造出来**。
+
+`prefers-reduced-motion` 会关掉自动巡航与持续物理，但选择、结构、回放、比较和返回都还在；移动端和键盘用户可以用显式控件或 `+` / `-` 展开收起 EXACT 层级，不依赖滚轮。
+
+## 数据是怎么来的
+
+模型数据从**魔搭与 Hugging Face 双源、按固定 revision** 同步，交叉校验结构字段，产出带 checksum 的 Artifact。首页只加载轻量的 Signature，放大、回放和比较时才按需拉完整 Artifact——所以星图能一直跑得动。
+
+## 现在的状态
+
+Model Universe 1.0 已经合进 `main` 并发布到生产环境。真实浏览器的视觉、交互与帧率验收还是开放项，正在对着生产环境跑。
+
+如果你也觉得「模型该被看见」这件事有意思，欢迎去 [Live Demo](https://model-flow-phi.vercel.app/) 里逛一圈，或者直接翻 [GitHub 上的文档](https://github.com/zhentai-sn/model-flow)——从第一性原理到 SDD、设计、实现，全都写在仓库里。
+
+</div>
+
+<div class="lang-en">
+
+> **Give models a shape people can remember.**
+>
+> [▶ Open the live demo](https://model-flow-phi.vercel.app/) · [GitHub repository](https://github.com/zhentai-sn/model-flow)
+
+## Why: parameter counts don't build intuition
+
+Today we get to know a model through parameter counts, leaderboards, architecture acronyms and a node diagram. All of that **describes** a model, but it rarely gives anyone **intuition**.
+
+You know a model "has 32B parameters" and still have no idea what it looks like. You know it uses MoE, and still can't say how it structurally differs from a Dense model of the same size.
+
+Model Flow flips the order: **a model shouldn't be explained first — it should be seen first.**
+
+## How: shape has to grow out of real config
+
+The core constraint of the project is that **shape is not a decorative layer wrapped around data; shape is another expression of the data itself.**
+
+- Layer count → perceivable length, rhythm and repetition
+- Hidden size → thickness and sense of capacity in the body
+- Attention heads → genuinely countable information channels
+- Q/KV ratio → query density vs. shared memory
+- Dense MLP → a continuous computation cavity attached to the spine
+- MoE experts → discrete clusters wired to, and selectively activated by, a router
+
+Every visible difference must answer one question: **which fact in the config does it come from?** If it can't, it's just style. If it contradicts the data, it's misleading.
+
+That leads to a second rule: **different architectures must become different species.** If every model is stuffed into the same capsule or card, the template erases the real differences. Dense is a continuous spine; MoE is a shared trunk plus discrete expert colonies; SSM, multimodal and hybrid architectures each grow their own form.
+
+The universe currently holds **7 providers, 20 revision-pinned open models and 13 architecture adapters**: Qwen, DeepSeek, Z.ai, Moonshot, Meta, Mistral and Google — covering MLA / DSA / KDA, MoE and LatentMoE, Mamba-style SSM, vision entry points and more.
+
+## The part I care about most: evidence boundaries
+
+The easiest way for a visualization to lie is to present a pretty animation as "this is how the model actually runs." So every piece of motion on the page must belong to one of four evidence modes:
+
+| Mode | Meaning | Can it express real runtime state? |
+| --- | --- | --- |
+| `STRUCTURAL_FACT` | Structural facts from config, model code or the graph | No |
+| `PUBLIC_RUNTIME` | Published, traceable historical run data | Only for that public record |
+| `DERIVED` | Derived values: parameters, layout, perceptual compression | No |
+| `STRUCTURAL_SIM` | Structural simulation generated from graph order | No |
+
+With no public runtime data available, the default is `STRUCTURAL_SIM` — **stated explicitly in the UI**. Likewise, models whose config is gated are labelled `gated-config-public-metadata` rather than pretending a private file was read.
+
+## Interaction: zoom is revelation, not magnification
+
+The whole universe lives on a single Canvas. With no input, the camera cruises slowly along the live provider centroid; pointer, wheel, touch or keyboard takes over instantly.
+
+Selecting a model first enters `LOCK` in place; only after the artifact passes checksum and structural validation does the camera accelerate continuously — `LOCK → ACCELERATE → REVEAL → ARRIVE`. A failed check raises `warp.aborted` and returns to the pre-entry camera instead of drawing half-loaded data.
+
+Once there, keep zooming in on the same Canvas: sculpture → anatomy → the EXACT computation graph, with replay pulses travelling along the artifact's real edges. Zooming out folds the layers back and returns you to the model's live star field. Two-model comparison keeps both real endpoints and links shared structure through `DERIVED` semantic alignment — **structure that doesn't match is never fabricated.**
+
+`prefers-reduced-motion` disables the auto-cruise and continuous physics while keeping selection, structure, replay, comparison and return. Mobile and keyboard users can expand or collapse the EXACT levels with explicit controls or `+` / `-`, without a scroll wheel.
+
+## Where the data comes from
+
+Model data is synced from **two sources — ModelScope and Hugging Face — at pinned revisions**, cross-verified on structural fields, and emitted as checksummed artifacts. The landing view only loads lightweight signatures; full artifacts are fetched on demand for zoom, replay and comparison, which is what keeps the star map responsive.
+
+## Current status
+
+Model Universe 1.0 is merged into `main` and released to production. Real-browser visual, interaction and frame-rate acceptance is still an open item, now running against production rather than a preview deployment.
+
+If the idea that "models should be seen" appeals to you, take a walk through the [live demo](https://model-flow-phi.vercel.app/), or read [the docs on GitHub](https://github.com/zhentai-sn/model-flow) — first principles, SDDs, design and implementation all live in the repo.
+
+</div>

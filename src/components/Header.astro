@@ -11,11 +11,21 @@ import Search from './Search.astro';
 			<b>{SITE_TITLE}</b>
 		</a>
 		<div class="internal-links">
-			<HeaderLink href="/">home</HeaderLink>
-			<HeaderLink href="/blog">posts</HeaderLink>
-			<HeaderLink href="/tags">tags</HeaderLink>
-			<HeaderLink href="/resume">resume</HeaderLink>
-				<HeaderLink href="/about">about</HeaderLink>
+			<HeaderLink href="/"
+				><span class="lang-zh">首页</span><span class="lang-en">home</span></HeaderLink
+			>
+			<HeaderLink href="/blog"
+				><span class="lang-zh">文章</span><span class="lang-en">posts</span></HeaderLink
+			>
+			<HeaderLink href="/tags"
+				><span class="lang-zh">标签</span><span class="lang-en">tags</span></HeaderLink
+			>
+			<HeaderLink href="/resume"
+				><span class="lang-zh">简历</span><span class="lang-en">resume</span></HeaderLink
+			>
+			<HeaderLink href="/about"
+				><span class="lang-zh">关于</span><span class="lang-en">about</span></HeaderLink
+			>
 		</div>
 		<div class="controls">
 			<Search />
