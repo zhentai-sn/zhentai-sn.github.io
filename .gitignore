@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Personal ID photo for the résumé — kept local only, never committed
+src/assets/resume-photo.*

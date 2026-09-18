@@ -1,8 +1,15 @@
 ---
-import { Font } from 'astro:assets';
+import { Font, Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+
+// The ID photo is gitignored and only exists locally; render it when present.
+const photoModules = import.meta.glob<{ default: ImageMetadata }>('../assets/resume-photo.*', {
+	eager: true,
+});
+const resumePhoto = Object.values(photoModules)[0]?.default;
 ---
 
 <!doctype html>
@@ -61,6 +68,9 @@ import Header from '../components/Header.astro';
 							</button>
 						</p>
 					</div>
+					{resumePhoto && (
+						<Image class="photo" src={resumePhoto} alt="张桢泰证件照" width={300} loading="eager" />
+					)}
 				</header>
 
 				{/* ===================== Profile ===================== */}
@@ -365,11 +375,21 @@ import Header from '../components/Header.astro';
 			/* ---------- header ---------- */
 			.cv-head {
 				display: grid;
-				grid-template-columns: minmax(10rem, 30%) minmax(0, 1fr);
+				grid-template-columns: minmax(10rem, 30%) minmax(0, 1fr) auto;
 				align-items: center;
 				gap: 1.75em;
 				text-align: left;
 				margin-bottom: 1.4em;
+			}
+			/* ID photo: crop the square source to a 3:4 portrait around the face. */
+			.photo {
+				width: 5.4em;
+				height: auto;
+				aspect-ratio: 3 / 4;
+				object-fit: cover;
+				object-position: 50% 30%;
+				border: 1px solid var(--doc-hair);
+				display: block;
 			}
 			.name {
 				font-family: var(--font-serif);
@@ -521,6 +541,7 @@ import Header from '../components/Header.astro';
 			@media (max-width: 560px) {
 				.cv { padding: 2em 1.5em; }
 				.name { font-size: 1.8rem; letter-spacing: 2px; }
+				.photo { grid-row: 1; width: 6em; }
 				.cv-head {
 					grid-template-columns: minmax(0, 1fr);
 					justify-items: center;
