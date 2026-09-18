@@ -43,29 +43,38 @@ const resumePhoto = Object.values(photoModules)[0]?.default;
 			<article class="cv">
 				{/* ===================== Header ===================== */}
 				<header class="cv-head">
-					<h1 class="name">
-						<span class="lang-zh">张桢泰</span><span class="lang-en">ZHENTAI ZHANG</span>
-					</h1>
-					<div class="head-meta">
-						<p class="meta-item objective">
+					<div class="head-main">
+						<h1 class="name">
+							<span class="lang-zh">张桢泰</span><span class="lang-en">ZHENTAI ZHANG</span>
+						</h1>
+						<p class="meta-line objective">
 							<span class="lang-zh">求职意向：AI 算法工程师</span>
 							<span class="lang-en">Target Role: AI Algorithm Engineer</span>
-						</p>
-						<p class="meta-item location">
+							<span class="sep">|</span>
 							<span class="lang-zh">求职地：深圳</span>
-							<span class="lang-en">Preferred Location: Shenzhen</span>
+							<span class="lang-en">Location: Shenzhen</span>
 						</p>
-						<p class="meta-item contact-item">
-							<span class="lang-zh">邮箱：</span><span class="lang-en">Email: </span>
-							<button class="contact-reveal" type="button" data-contact="email">
-								<span class="lang-zh">点击查看</span><span class="lang-en">reveal</span>
-							</button>
-						</p>
-						<p class="meta-item contact-item">
-							<span class="lang-zh">电话：</span><span class="lang-en">Phone: </span>
-							<button class="contact-reveal" type="button" data-contact="phone">
-								<span class="lang-zh">点击查看</span><span class="lang-en">reveal</span>
-							</button>
+						<p class="meta-line contacts">
+							<span class="contact-item">
+								<span class="lang-zh">电话：</span><span class="lang-en">Phone: </span>
+								<button class="contact-reveal" type="button" data-contact="phone">
+									<span class="lang-zh">点击查看</span><span class="lang-en">reveal</span>
+								</button>
+							</span>
+							<span class="sep">|</span>
+							<span class="contact-item">
+								<span class="lang-zh">邮箱：</span><span class="lang-en">Email: </span>
+								<button class="contact-reveal" type="button" data-contact="email">
+									<span class="lang-zh">点击查看</span><span class="lang-en">reveal</span>
+								</button>
+							</span>
+							<span class="sep">|</span>
+							<span class="contact-item">
+								<span class="lang-zh">博客：</span><span class="lang-en">Blog: </span>
+								<a class="contact-value" href="https://zhentai-sn.github.io/" target="_blank" rel="noopener"
+									>zhentai-sn.github.io</a
+								>
+							</span>
 						</p>
 					</div>
 					{resumePhoto && (
@@ -373,59 +382,62 @@ const resumePhoto = Object.values(photoModules)[0]?.default;
 			}
 
 			/* ---------- header ---------- */
+			/* Compact header: name + two info lines on the left, ID photo on the right. */
 			.cv-head {
-				display: grid;
-				grid-template-columns: minmax(10rem, 30%) minmax(0, 1fr) auto;
-				align-items: center;
-				gap: 1.75em;
+				display: flex;
+				/* Bottom-align so the photo's lower edge lines up with the contact line. */
+				align-items: flex-end;
+				justify-content: space-between;
+				gap: 1.5em;
 				text-align: left;
-				margin-bottom: 1.4em;
+				margin-bottom: 1em;
+			}
+			.head-main {
+				flex: 1;
+				min-width: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.35em;
 			}
 			/* ID photo: crop the square source to a 3:4 portrait around the face. */
 			.photo {
-				width: 5.4em;
+				flex-shrink: 0;
+				width: 6em;
 				height: auto;
 				aspect-ratio: 3 / 4;
 				object-fit: cover;
 				object-position: 50% 30%;
-				border: 1px solid var(--doc-hair);
+				border: none;
+				box-shadow: none;
 				display: block;
 			}
 			.name {
 				font-family: var(--font-serif);
 				font-weight: 700;
-				font-size: 2.3rem;
+				font-size: 2.1rem;
 				letter-spacing: 4px;
+				line-height: 1.15;
 				color: var(--doc-ink);
+				margin: 0 0 0.1em;
+			}
+			.meta-line {
 				margin: 0;
-				flex-shrink: 0;
-			}
-			.head-meta {
-				min-width: 0;
-				display: grid;
-				grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-				align-items: baseline;
-				justify-items: start;
-				column-gap: 1.5em;
-				row-gap: 0.45em;
-				text-align: left;
-			}
-			.meta-item {
-				min-width: 0;
-				margin: 0;
-				white-space: nowrap;
-			}
-			.objective,
-			.location {
-				font-size: 0.98rem;
-				font-weight: 600;
-				color: var(--doc-sub);
-			}
-			.contact-item {
 				font-size: 0.95rem;
 				color: var(--doc-ink);
 				display: flex;
+				flex-wrap: wrap;
 				align-items: center;
+				column-gap: 0.55em;
+				row-gap: 0.2em;
+			}
+			.objective { font-weight: 700; }
+			/* Keep phone | email | blog on one line even after the values are revealed. */
+			.contacts { flex-wrap: nowrap; white-space: nowrap; }
+			.sep { color: #999; font-weight: 400; }
+			.contact-item {
+				display: inline-flex;
+				align-items: center;
+				white-space: nowrap;
 			}
 			.contact-reveal {
 				font: inherit;
@@ -541,19 +553,11 @@ const resumePhoto = Object.values(photoModules)[0]?.default;
 			@media (max-width: 560px) {
 				.cv { padding: 2em 1.5em; }
 				.name { font-size: 1.8rem; letter-spacing: 2px; }
-				.photo { grid-row: 1; width: 6em; }
-				.cv-head {
-					grid-template-columns: minmax(0, 1fr);
-					justify-items: center;
-					gap: 0.65em;
-					text-align: center;
-				}
-				.head-meta {
-					grid-template-columns: minmax(0, 1fr);
-					justify-items: center;
-					row-gap: 0.35em;
-					text-align: center;
-				}
+				.photo { width: 4.8em; }
+				.cv-head { gap: 0.9em; }
+				.meta-line .sep { display: none; }
+				.meta-line,
+				.contacts { flex-direction: column; align-items: flex-start; }
 				.row { flex-direction: column; gap: 0; }
 				.edu-details {
 					align-items: flex-start;
@@ -593,15 +597,11 @@ const resumePhoto = Object.values(photoModules)[0]?.default;
 					font-size: 9.8pt;
 					line-height: 1.33;
 				}
-				.cv-head {
-					gap: 1.5em;
-					margin-bottom: 0.7em;
-				}
-				.name { font-size: 2rem; }
-				.head-meta {
-					column-gap: 1em;
-					row-gap: 0.18em;
-				}
+				.cv-head { margin-bottom: 0.6em; }
+				.head-main { gap: 0.2em; }
+				.name { font-size: 1.9rem; }
+				.photo { width: 5.4em; }
+				.meta-line a { text-decoration: none; border: 0; }
 				.contact-reveal {
 					background: none;
 					border: 0;
@@ -665,7 +665,7 @@ const resumePhoto = Object.values(photoModules)[0]?.default;
 					const link = document.createElement('a');
 					link.className = 'contact-value';
 					link.href = type === 'email' ? `mailto:${value}` : `tel:+86${value}`;
-					link.textContent = type === 'email' ? value : `(+86) ${value}`;
+					link.textContent = value;
 					revealButton.replaceWith(link);
 					return;
 				}
