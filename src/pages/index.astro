@@ -88,10 +88,12 @@ const posts = (await getCollection('blog'))
 									<span class="lang-en">{project.descEn}</span>
 								</p>
 								<div class="links">
-									<a class="primary px-sm" href={project.url} target="_blank" rel="noopener">
-										<span class="lang-zh">▶ 打开</span>
-										<span class="lang-en">▶ Launch</span>
-									</a>
+									{project.url && (
+										<a class="primary px-sm" href={project.url} target="_blank" rel="noopener">
+											<span class="lang-zh">▶ 打开</span>
+											<span class="lang-en">▶ Launch</span>
+										</a>
+									)}
 									<a class="ghost px-sm" href={project.post}>
 										<span class="lang-zh">读一读</span>
 										<span class="lang-en">Read up</span>
