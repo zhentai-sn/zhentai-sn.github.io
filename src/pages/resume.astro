@@ -394,8 +394,11 @@ const resumePhoto = Object.values(photoModules)[0]?.default;
 				row-gap: 0.2em;
 			}
 			.objective { font-weight: 700; }
-			/* Keep phone | email | blog on one line even after the values are revealed. */
-			.contacts { flex-wrap: nowrap; white-space: nowrap; }
+			/* Keep phone | email | blog on one line even after the values are revealed —
+			   only where there's room (wide screens and print); narrower screens wrap. */
+			@media (min-width: 820px), print {
+				.contacts { flex-wrap: nowrap; white-space: nowrap; }
+			}
 			.sep { color: #999; font-weight: 400; }
 			.contact-item {
 				display: inline-flex;
