@@ -17,15 +17,18 @@ import Search from './Search.astro';
 			<HeaderLink href="/blog"
 				><span class="lang-zh">文章</span><span class="lang-en">posts</span></HeaderLink
 			>
-			<HeaderLink href="/tags"
-				><span class="lang-zh">标签</span><span class="lang-en">tags</span></HeaderLink
-			>
 			<HeaderLink href="/resume"
 				><span class="lang-zh">简历</span><span class="lang-en">resume</span></HeaderLink
+			>
+			{/* Temporarily hidden (not enough content yet); the /tags and /about pages
+			    still build, so tag chips inside posts keep working.
+			<HeaderLink href="/tags"
+				><span class="lang-zh">标签</span><span class="lang-en">tags</span></HeaderLink
 			>
 			<HeaderLink href="/about"
 				><span class="lang-zh">关于</span><span class="lang-en">about</span></HeaderLink
 			>
+			*/}
 		</div>
 		<div class="controls">
 			<Search />
