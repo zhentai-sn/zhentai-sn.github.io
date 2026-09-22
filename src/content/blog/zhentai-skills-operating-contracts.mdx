@@ -1,0 +1,42 @@
+---
+title: 'zhentai-skills：把踩过的坑写成 agent 的操作契约'
+description: '一个人在真实项目里攒出来的 18 个 Claude Code / Agent Skills——不是教程汇编，是「做过、踩过坑、不想再从头想一遍」的事的操作契约。'
+pubDate: 'Sep 22 2026'
+tags: ['开源项目', 'Claude Code', 'Agent Skills', '工程实践', 'zhentai-skills']
+---
+
+<div class="lang-zh">
+
+> **同一类活干到第二次、并且第二次还在重新试错，就该沉淀。**
+>
+> [GitHub 仓库](https://github.com/zhentai-sn/zhentai-skills) · 18 个技能 · 已脱敏的公开版本
+
+zhentai-skills 是我在真实项目里一次次遇到、解决、沉淀出来的 Claude Code / Agent Skills，统一以 `x-ai-` 前缀命名，覆盖五类活：文档与方法论、Git 工作流、发布与部署、环境与运维、排障与取数。
+
+每个技能是一件事的**操作契约**，而不是一篇教程：什么顺序做、什么必须先跟人确认、什么禁止、上次是在哪一步栽的。写给 agent 读，靠 `description` 决定何时被自动选中，而不是等人想起来去翻 wiki。
+
+它不是规划出来的。三层成熟度从目录形态就能看出来：只有 `SKILL.md` 的是一次性沉淀；长出 `scripts/` 或 `agents/` 的是步骤稳定到可以固化成可执行文件；长出 `references/` 的是反复用过、细节多到必须分文件，主文件只留判断。最大的 `x-ai-docs-builder` 16 个文件，最小的 `x-ai-ssh-remote` 113 行——**行数不代表重要性，代表这件事被踩过多少次坑。**
+
+公开版本里的内网 IP、主机名、内部域名都换成了 `<占位符>`，方法、顺序与踩坑记录保持原样。另有两个内部技能没放进来：它们整篇都在讲某套具体业务表怎么处理，抽掉业务细节之后只剩空壳。
+
+下一步不是继续加，而是给长得过大的单文件技能拆 `references/`、给「目录名与 frontmatter 是否一致」加机械校验，以及到 25 个左右时开始合并同类项——技能一多，`description` 之间会互相干扰，选错比没有更糟。
+
+</div>
+
+<div class="lang-en">
+
+> **When the same kind of work comes around a second time and you're *still* figuring it out from scratch, write it down.**
+>
+> [GitHub repository](https://github.com/zhentai-sn/zhentai-skills) · 18 skills · sanitized public version
+
+zhentai-skills is the set of Claude Code / Agent Skills I accumulated by hitting, solving and then recording the same problems in real projects. All of them share the `x-ai-` prefix, across five areas: docs and methodology, Git workflow, release and deployment, environment and ops, debugging and data access.
+
+Each skill is an **operating contract** for one job rather than a tutorial: what order to do things in, what must be confirmed with a human first, what is forbidden, and which step burned me last time. They are written for an agent to read, and selected automatically by their `description` instead of waiting for someone to remember a wiki page.
+
+None of it was planned up front. Three tiers of maturity show up in the directory shape alone: a lone `SKILL.md` is a one-off write-up; a `scripts/` or `agents/` folder means the steps got stable enough to freeze into executables; a `references/` folder means the skill has been used often enough that the details had to move out, leaving only judgment in the main file. The largest, `x-ai-docs-builder`, has 16 files; the smallest, `x-ai-ssh-remote`, has 113 lines — **line count doesn't measure importance, it measures how many times the thing bit me.**
+
+In the public version, internal IPs, hostnames and domains are replaced with `<placeholders>`; the methods, ordering and hard-won gotchas are untouched. Two internal skills stayed behind: both were entirely about one specific set of business tables, and strip the business detail and nothing is left.
+
+What comes next isn't more skills. It's splitting `references/` out of the single-file ones that grew too big, adding a mechanical check that each directory name matches its frontmatter, and — somewhere around 25 — merging overlapping ones, because as the set grows the `description`s start competing, and picking the wrong skill is worse than having none.
+
+</div>

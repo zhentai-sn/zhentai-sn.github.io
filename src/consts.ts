@@ -45,4 +45,15 @@ export const PROJECTS: Project[] = [
 		repo: 'https://github.com/zhentai-sn/open-glaux',
 		post: '/blog/glaux-biomedical-image-agents/',
 	},
+	{
+		name: 'zhentai-skills',
+		tagline: '把踩过的坑写成 agent 的操作契约。',
+		taglineEn: 'Turn hard-won gotchas into operating contracts for agents.',
+		descZh:
+			'18 个在真实项目里攒出来的 Claude Code / Agent Skills——文档、Git、发布部署、环境运维、排障取数，写给 agent 读的顺序、确认点与禁止项。',
+		descEn:
+			'18 Claude Code / Agent Skills accumulated in real projects — docs, Git, release, ops and debugging, written as the ordering, confirmation gates and hard limits an agent can read.',
+		repo: 'https://github.com/zhentai-sn/zhentai-skills',
+		post: '/blog/zhentai-skills-operating-contracts/',
+	},
 ];
