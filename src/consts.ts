@@ -36,12 +36,12 @@ export const PROJECTS: Project[] = [
 	},
 	{
 		name: 'Glaux',
-		tagline: '给影像智能体一个能把事做对的环境。',
-		taglineEn: 'An environment where image agents get things right.',
+		tagline: '让图像与视频分析有据可查。',
+		taglineEn: 'Image and video analysis with evidence you can review.',
 		descZh:
-			'用自然语言描述研究目标，智能体调用带物理标定的分割与测量工具干活，覆盖超声、CT 与病理切片。',
+			'本机运行的图像与视频分析智能体环境：连接自己的模型，在工作区分析图像与视频、复核证据，并保存可复用案例。',
 		descEn:
-			'Describe a research goal in plain language; the agent does the work with calibrated segmentation and measurement tools across ultrasound, CT and pathology slides.',
+			'A local agent environment for image and video analysis: connect your own model, analyze files, review evidence, and save reusable cases.',
 		repo: 'https://github.com/zhentai-sn/open-glaux',
 		post: '/blog/glaux-biomedical-image-agents/',
 	},

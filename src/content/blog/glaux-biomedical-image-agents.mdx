@@ -1,34 +1,49 @@
 ---
-title: 'Glaux：给生物医学影像智能体一个能把事做对的环境'
-description: '一个生物医学影像智能体：用自然语言描述研究目标，由智能体调用带物理标定的工具去分割和测量。'
+title: 'Glaux：图像与视频分析的智能体环境'
+description: '本机运行的图像与视频分析智能体环境：连接自己的模型，在工作区分析影像、复核证据，并保存可复用案例。'
 pubDate: 'Sep 19 2026'
-tags: ['开源项目', '智能体', '医学影像', '计算机视觉', 'Glaux']
+updatedDate: 'Oct 9 2026'
+tags: ['开源项目', '智能体', '图像分析', '视频理解', 'Glaux']
 ---
 
 <div class="lang-zh">
 
-> **用自然语言描述一个研究目标，把生物医学图像变成可核对、可复现的洞察。**
+> **把图像与视频交给一个在本机工作的智能体环境，让分析过程和证据都能复核。**
 >
-> [GitHub 仓库](https://github.com/zhentai-sn/open-glaux) · 0.2.0 · Pre-alpha
+> [项目主页与下载](https://zhentai-sn.github.io/open-glaux/) · [GitHub 仓库](https://github.com/zhentai-sn/open-glaux) · [v0.3.0 发布页](https://github.com/zhentai-sn/open-glaux/releases/tag/v0.3.0)
 
-Glaux 是一个懂生物医学影像的智能体，以及它工作所需的一整套环境。智能体负责理解和规划，环境负责把事做对：带物理标定的分割与测量，覆盖超声、CT 和病理切片。
+Glaux 是本机运行的图像与视频分析智能体环境。你接入兼容的模型，Glaux 提供文件工作区、看图与视频问答、标注、测量和分割工具。围绕图像提问，或让智能体查看一段视频，回答可以结合画面、时间点与对齐的音频证据。
 
-它最初是一个"环境优先"的科学内核，外面包着一个 IDE 和一层意图解析；后来转向让智能体住进环境：界面改为对话优先，智能体通过工具调用内核干活，它提出的标注要由人确认才生效。
+<figure>
+  <a href="/images/glaux/glaux-overview-zh.webp" target="_blank" rel="noopener noreferrer">
+    <img src="/images/glaux/glaux-overview-zh.webp" alt="Glaux 中文界面：左侧为智能体对话区，中间为带框标注的猫咪图像，右侧为文件列表" width="1440" height="900" loading="lazy" />
+  </a>
+  <figcaption>Glaux 0.3.0 界面：对话、图像查看与文件浏览并列展示。点击图片查看原图。</figcaption>
+</figure>
 
-目前仍是 Pre-alpha，定位是科研洞察，而非临床决策。
+智能体可以放大和检查图像，提出标注后由人复核、修正或撤回；运行轨迹保留模型调用与工具过程，Atlas 可保存可复用案例。从看图到标注和测量，分析过程在同一个工作区内完成，具体工具取决于所接入的数据和模型。
+
+项目从“环境优先”的内核与 IDE，逐步转向让智能体通过工具调用内核。0.3.0 将这套体验打包为完整的本机版本，提供 Windows、Linux 和 macOS 安装器，以及一键更新与本地运行命令。用户数据保存在本机，程序包不包含专用模型权重。
 
 </div>
 
 <div class="lang-en">
 
-> **Describe a research goal in plain language, and turn biomedical images into insight you can check and reproduce.**
+> **Analyze images and video with a local agent environment, and keep the work and evidence open to review.**
 >
-> [GitHub repository](https://github.com/zhentai-sn/open-glaux) · 0.2.0 · Pre-alpha
+> [Project home and downloads](https://zhentai-sn.github.io/open-glaux/) · [GitHub repository](https://github.com/zhentai-sn/open-glaux) · [v0.3.0 release](https://github.com/zhentai-sn/open-glaux/releases/tag/v0.3.0)
 
-Glaux is an agent that understands biomedical images, together with the environment it needs to do the work. The agent understands and plans; the environment makes sure things are done right, with calibrated segmentation and measurement across ultrasound, CT and pathology slides.
+Glaux is a locally running agent environment for image and video analysis. Connect a compatible model, and Glaux provides a file workspace plus tools for image and video questions, annotation, measurement, and segmentation. Ask about an image or have the agent inspect a video; answers can draw on frames, timestamps, and aligned audio evidence.
 
-It started as an "environment-first" science core wrapped in an IDE and an intent-parsing layer, then pivoted to letting the agent move in: the UI became chat-first, the agent now works through tools that call the core, and the annotations it proposes take effect only when a person confirms them.
+<figure>
+  <a href="/images/glaux/glaux-overview-en.webp" target="_blank" rel="noopener noreferrer">
+    <img src="/images/glaux/glaux-overview-en.webp" alt="Glaux English interface: agent chat on the left, a cat image with a bounding box in the center, and a file list on the right" width="1440" height="900" loading="lazy" />
+  </a>
+  <figcaption>Glaux 0.3.0: chat, image inspection, and file browsing side by side. Click to view the full-size screenshot.</figcaption>
+</figure>
 
-It is still pre-alpha, aimed at research insight, not clinical decisions.
+The agent can zoom in and inspect images. Its proposed annotations can be reviewed, revised, or withdrawn by a person. Run trajectories preserve model and tool activity, while Atlas stores reusable cases. Image inspection, annotation, and measurement happen in the same workspace; the available tools depend on the data and models connected.
+
+Glaux began with an "environment-first" core wrapped in an IDE, then shifted to an agent that works through tools calling that core. Version 0.3.0 packages the experience for local use, with installers for Windows, Linux, and macOS, plus one-command updates and local runtime commands. User data stays on the machine. Dedicated model weights are not included.
 
 </div>
